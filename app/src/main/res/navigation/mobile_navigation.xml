@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_fridge">
+
+<!--    <fragment
+        android:id="@+id/navigation_shop_cart"
+        android:name="com.example.frigy.ui.ShopCartFragment"
+        android:label="@string/title_shop_cart"
+        tools:layout="@layout/fragment_shop_cart" />-->
+
+    <fragment
+        android:id="@+id/navigation_fridge"
+        android:name="com.example.frigy_project.FridgeFragment"
+        android:label="@string/title_fridge"
+        tools:layout="@layout/fragment_fridge" />
+
+<!--    <fragment
+        android:id="@+id/navigation_list_recipes"
+        android:name="com.example.frigy.ui.ListRecipesFragment"
+        android:label="@string/title_list_recipes"
+        tools:layout="@layout/fragment_list_recipes" />
+
+    <fragment
+        android:id="@+id/navigation_all_food"
+        android:name="com.example.frigy.ui.AllFoodFragment"
+        android:label="@string/title_all_food"
+        tools:layout="@layout/fragment_all_food" />-->
+
+</navigation>

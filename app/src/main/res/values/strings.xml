@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Frigy</string>
+    <string name="title_list_recipes">Список рецептов</string>
+    <string name="title_fridge">Холодильник</string>
+    <string name="title_shop_cart">Список покупок</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
