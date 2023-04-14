@@ -5,11 +5,12 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/navigation_fridge">
 
-<!--    <fragment
+    <fragment
         android:id="@+id/navigation_shop_cart"
-        android:name="com.example.frigy.ui.ShopCartFragment"
+        android:name="com.example.frigy_project.ShopListFragment"
         android:label="@string/title_shop_cart"
-        tools:layout="@layout/fragment_shop_cart" />-->
+        tools:layout="@layout/fragment_shop_list" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_fridge"
@@ -17,13 +18,13 @@
         android:label="@string/title_fridge"
         tools:layout="@layout/fragment_fridge" />
 
-<!--    <fragment
-        android:id="@+id/navigation_list_recipes"
-        android:name="com.example.frigy.ui.ListRecipesFragment"
-        android:label="@string/title_list_recipes"
-        tools:layout="@layout/fragment_list_recipes" />
-
     <fragment
+        android:id="@+id/navigation_list_recipes"
+        android:name="com.example.frigy_project.ListRecipesFragment"
+        android:label="@string/title_list_recipes"
+        tools:layout="@layout/fragment_recipe_list" />
+
+<!--    <fragment
         android:id="@+id/navigation_all_food"
         android:name="com.example.frigy.ui.AllFoodFragment"
         android:label="@string/title_all_food"
