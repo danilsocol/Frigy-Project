@@ -8,9 +8,8 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.databinding.FragmentFridgeBinding
 import com.example.frigy_project.models.FoodModel
@@ -36,10 +35,13 @@ class FridgeFragment : Fragment() {
 
 
     private fun init() {
-        val list = listOf<FoodModel>(FoodModel(1,"Молоко",0,false,1.0,0.0),
-            FoodModel(1,"Молоко",0,false,1.0,0.0),
-            FoodModel(1,"Молоко",0,false,1.0,0.0),)
+        val list = listOf<FoodModel>(
+            FoodModel(1, "Молоко", 0, false, 1.0, 0.0),
+            FoodModel(1, "Молоко", 0, false, 1.0, 0.0),
+            FoodModel(1, "Молоко", 0, false, 1.0, 0.0),
+        )
         foodAdapter.submitList(list)
+
 
         binding.apply {
             rcViewFridge.layoutManager = LinearLayoutManager(
@@ -64,13 +66,13 @@ class FridgeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                foodAdapter.getFilter().filter(newText)
+                foodAdapter.filter.filter(newText)
                 return true
             }
         }
         )
 
-}
+    }
     override fun onDestroyView() {
         super.onDestroyView() //todo удаление
         _binding = null
