@@ -11,38 +11,46 @@ import android.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.databinding.FragmentFridgeBinding
 import com.example.frigy_project.models.FoodModel
 
 
 class FridgeFragment : Fragment() {
 
-    private lateinit var binding: FragmentFridgeBinding
+    private var _binding:  FragmentFridgeBinding? = null
     private val foodAdapter = FoodAdapter()
 
+
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
         ): View? {
-        binding = FragmentFridgeBinding.inflate(layoutInflater)
+        _binding = FragmentFridgeBinding.inflate(layoutInflater)
 
         init()
-        return inflater.inflate(R.layout.fragment_fridge, container, false)
+        return binding.root
     }
 
 
     private fun init() {
-        val list = listOf<FoodModel>(FoodModel(1,"Молоко",0,false,1.0,0.0))
+        val list = listOf<FoodModel>(FoodModel(1,"Молоко",0,false,1.0,0.0),
+            FoodModel(1,"Молоко",0,false,1.0,0.0),
+            FoodModel(1,"Молоко",0,false,1.0,0.0),)
         foodAdapter.submitList(list)
 
         binding.apply {
-            rcViewFridge.layoutManager = GridLayoutManager(context, 2)
+            rcViewFridge.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
             rcViewFridge.adapter = foodAdapter
         }
     }
 
-   /* override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
         inflater.inflate(R.menu.search_menu, menu)
 
@@ -62,9 +70,9 @@ class FridgeFragment : Fragment() {
         }
         )
 
-}*/
+}
     override fun onDestroyView() {
         super.onDestroyView() //todo удаление
-/*        binding = null*/
+        _binding = null
     }
 }
