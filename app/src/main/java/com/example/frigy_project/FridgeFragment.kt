@@ -1,14 +1,12 @@
 package com.example.frigy_project
 
 
-import android.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.databinding.FragmentFridgeBinding
@@ -19,7 +17,6 @@ class FridgeFragment : Fragment() {
 
     private var _binding:  FragmentFridgeBinding? = null
     private val foodAdapter = FoodAdapter()
-
 
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -37,35 +34,15 @@ class FridgeFragment : Fragment() {
     private fun init() {
         val list = listOf<FoodModel>(
             FoodModel(1, "Молоко", 0, false, 1.0, 0.0),
-            FoodModel(1, "Молоко", 0, false, 1.0, 0.0),
-            FoodModel(1, "Молоко", 0, false, 1.0, 0.0),
+            FoodModel(1, "Beer", 0, false, 1.0, 0.0),
+            FoodModel(1, "Milk", 0, false, 1.0, 0.0),
         )
         foodAdapter.submitList(list)
 
+        val searchItem = binding.toolbar.menu.findItem(R.id.search)
+        val searchBar = searchItem.actionView as SearchView
 
-        binding.searchBar.setOnMenuItemClickListener { menuItem -> true }
-
-
-
-
-        binding.apply {
-            rcViewFridge.layoutManager = LinearLayoutManager(
-                context,
-                LinearLayoutManager.VERTICAL, false
-            )
-            rcViewFridge.adapter = foodAdapter
-        }
-    }
-
-    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-
-        inflater.inflate(R.menu.search_menu, menu)
-
-        val search = menu.findItem(R.id.search)
-        val searchView = search.actionView as SearchView
-        searchView.queryHint = "Поиск"
-
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -77,7 +54,16 @@ class FridgeFragment : Fragment() {
         }
         )
 
-    }*/
+        binding.apply {
+            rcViewFridge.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
+            rcViewFridge.adapter = foodAdapter
+        }
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView() //todo удаление
         _binding = null
