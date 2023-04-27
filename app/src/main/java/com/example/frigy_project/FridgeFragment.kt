@@ -37,7 +37,8 @@ class FridgeFragment : Fragment() {
             FoodModel(1, "Beer", 0, false, 1.0, 0.0),
             FoodModel(1, "Milk", 0, false, 1.0, 0.0),
         )
-        foodAdapter.submitList(list)
+
+        foodAdapter.setData(list) // todo подумать над изменением setData на subbmitlist
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val searchBar = searchItem.actionView as SearchView
@@ -48,7 +49,11 @@ class FridgeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                foodAdapter.filter.filter(newText)
+                if (newText.isNullOrEmpty()) {
+                    foodAdapter.filter.filter(null)
+                } else {
+                    foodAdapter.filter.filter(newText)
+                }
                 return true
             }
         }

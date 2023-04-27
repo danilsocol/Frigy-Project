@@ -12,9 +12,10 @@ import com.example.frigy_project.filters.FridgeFilter
 import com.example.frigy_project.models.CategoryList.listFoodCategory
 import com.example.frigy_project.models.FoodModel
 
-class FoodAdapter : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallback()), Filterable {
+class FoodAdapter() : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallback()), Filterable {
 
-    private var originalList = emptyList<FoodModel>()
+    var originalList : List<FoodModel>? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodHolder {
 
         val binding = ItemFoodBinding.inflate(
@@ -29,11 +30,11 @@ class FoodAdapter : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallbac
 
     fun setData(newList: List<FoodModel>) {
         originalList = newList
-        submitList(newList)
+        submitList(originalList)
     }
 
     override fun getFilter(): Filter {
-        return FridgeFilter(currentList, this)
+        return FridgeFilter(originalList!!.toList(), this)
     }
 
     class FoodHolder(private val binding: ItemFoodBinding) : RecyclerView.ViewHolder(binding.root) {
