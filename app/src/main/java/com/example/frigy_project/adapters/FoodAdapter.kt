@@ -1,6 +1,5 @@
-package com.example.frigy_project
+package com.example.frigy_project.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -9,11 +8,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frigy_project.databinding.ItemFoodBinding
+import com.example.frigy_project.filters.FridgeFilter
 import com.example.frigy_project.models.CategoryList.listFoodCategory
 import com.example.frigy_project.models.FoodModel
 
 class FoodAdapter : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallback()), Filterable {
 
+    private var originalList = emptyList<FoodModel>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodHolder {
 
         val binding = ItemFoodBinding.inflate(
@@ -22,9 +23,17 @@ class FoodAdapter : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallbac
         return FoodHolder(binding)
 
     }
-
     override fun onBindViewHolder(holder: FoodHolder, position: Int) {
         holder.bind(getItem(position))
+    }
+
+    fun setData(newList: List<FoodModel>) {
+        originalList = newList
+        submitList(newList)
+    }
+
+    override fun getFilter(): Filter {
+        return FridgeFilter(currentList, this)
     }
 
     class FoodHolder(private val binding: ItemFoodBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -60,37 +69,5 @@ class FoodAdapter : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallbac
         }
     }
 
-    private var list = mutableListOf<FoodModel>()
-
-
-    override fun getFilter(): Filter {
-        return customFilter
-    }
-
-    private val customFilter = object : Filter() {
-        override fun performFiltering(constraint: CharSequence?): FilterResults {
-            val filteredList = mutableListOf<FoodModel>()
-            if (constraint.isNullOrEmpty()) {
-                filteredList.addAll(list)
-            } else {
-                for (item in list) {
-                    if (item.name.toLowerCase().startsWith(constraint.toString().toLowerCase())) {
-                        filteredList.add(item)
-                    }
-                }
-            }
-            val results = FilterResults()
-            results.values = filteredList
-            return results
-        }
-
-        override fun publishResults(constraint: CharSequence?, filterResults: FilterResults?) {
-            list.clear()
-            list.addAll(filterResults?.values as MutableList<FoodModel>)
-            submitList(list)
-        }
-
-
-    }
 
 }
