@@ -1,6 +1,7 @@
 package com.example.frigy_project
 
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -8,7 +9,6 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.databinding.FragmentFridgeBinding
@@ -43,6 +43,11 @@ class FridgeFragment : Fragment() {
         foodAdapter.submitList(list)
 
 
+        binding.searchBar.setOnMenuItemClickListener { menuItem -> true }
+
+
+
+
         binding.apply {
             rcViewFridge.layoutManager = LinearLayoutManager(
                 context,
@@ -52,7 +57,7 @@ class FridgeFragment : Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
         inflater.inflate(R.menu.search_menu, menu)
 
@@ -72,7 +77,7 @@ class FridgeFragment : Fragment() {
         }
         )
 
-    }
+    }*/
     override fun onDestroyView() {
         super.onDestroyView() //todo удаление
         _binding = null
