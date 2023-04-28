@@ -4,23 +4,69 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.frigy_project.adapters.ShopAdapter
 import com.example.frigy_project.databinding.FragmentShopListBinding
+import com.example.frigy_project.models.Product
 
 class ShopListFragment : Fragment() {
 
-    private var binding: FragmentShopListBinding? = null
+    private var _binding:  FragmentShopListBinding? = null
+    private val shopAdapter = ShopAdapter()
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_shop_list, container, false)
+        _binding = FragmentShopListBinding.inflate(layoutInflater)
+
+        init()
+        return binding.root
+    }
+
+    private fun init() {
+        val list = listOf<Product>(
+            Product.ProductToBuy(1, "Молоко", 0, 1.0),
+            Product.ProductToBuy(1, "Beer", 0, 1.0),
+            Product.ProductToBuy(1, "Milk", 0, 1.0),
+        )
+
+        shopAdapter.setData(list) // todo подумать над изменением setData на subbmitlist
+
+        val searchItem = binding.toolbar.menu.findItem(R.id.search)
+        val searchBar = searchItem.actionView as SearchView
+
+        searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) {
+                    foodAdapter.filter.filter(null)
+                } else {
+                    foodAdapter.filter.filter(newText)
+                }
+                return true
+            }
+        }
+        )
+
+        binding.apply {
+            rcViewFridge.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
+            rcViewFridge.adapter = foodAdapter
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 }

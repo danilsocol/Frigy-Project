@@ -1,33 +1,28 @@
 package com.example.frigy_project.filters
 
 
-import android.util.Log
 import android.widget.Filter
-import com.example.frigy_project.adapters.FoodAdapter
-import com.example.frigy_project.models.FoodModel
+import com.example.frigy_project.adapters.FridgeAdapter
+import com.example.frigy_project.models.Product
 import java.util.Locale
 
 
-class FridgeFilter(private val list: List<FoodModel>, private val adapter: FoodAdapter) : Filter() {
-    private var filteredList: List<FoodModel>? = null
+class FridgeFilter(private val list: List<Product>, private val adapter: FridgeAdapter) : Filter() {
+    private var filteredList: List<Product>? = null
 
     override fun performFiltering(constraint: CharSequence?): FilterResults {
-        val query = constraint.toString().toLowerCase(Locale.ROOT).trim()
 
-        filteredList = if (query.isEmpty()) {
+        filteredList = if (constraint.isNullOrEmpty()) {
             list
             }
             else {
-            list.filter { myModel ->
-                myModel.name.toLowerCase(Locale.ROOT).contains(query)
+            list.filter { foodModel ->
+                foodModel.name.toLowerCase(Locale.ROOT).contains(constraint.toString().lowercase(Locale.ROOT).trim())
                 }
             }
 
         val results = FilterResults()
-        if(filteredList!!.isEmpty())
-            results.values = null
-        else
-            results.values = filteredList
+        results.values = filteredList
         return results
     }
 
@@ -35,7 +30,7 @@ class FridgeFilter(private val list: List<FoodModel>, private val adapter: FoodA
         if (results?.values == null) {
             adapter.submitList(adapter.originalList)
         } else {
-            filteredList = results.values as List<FoodModel>
+            filteredList = results.values as List<Product>
             adapter.submitList(filteredList)
         }
     }

@@ -7,18 +7,18 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.frigy_project.databinding.ItemFoodBinding
+import com.example.frigy_project.databinding.ItemProductBinding
 import com.example.frigy_project.filters.FridgeFilter
 import com.example.frigy_project.models.CategoryList.listFoodCategory
-import com.example.frigy_project.models.FoodModel
+import com.example.frigy_project.models.Product
 
-class FoodAdapter() : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallback()), Filterable {
+class FridgeAdapter() : ListAdapter<Product, FridgeAdapter.FoodHolder>(DiffCallback<Product>()), IFilterable<Product> {
 
-    var originalList : List<FoodModel>? = null
+    var originalList : List<Product>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodHolder {
 
-        val binding = ItemFoodBinding.inflate(
+        val binding = ItemProductBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false)
         return FoodHolder(binding)
@@ -28,7 +28,7 @@ class FoodAdapter() : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallb
         holder.bind(getItem(position))
     }
 
-    fun setData(newList: List<FoodModel>) {
+    override fun setData(newList: List<Product>) {
         originalList = newList
         submitList(originalList)
     }
@@ -37,12 +37,12 @@ class FoodAdapter() : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallb
         return FridgeFilter(originalList!!.toList(), this)
     }
 
-    class FoodHolder(private val binding: ItemFoodBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: FoodModel) = with(binding) {
+    class FoodHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(food: Product) = with(binding) {
 
             nameFood.text = food.name
             countFood.text = (food.count.toString())
-            iconFoodCategory.setImageResource(listFoodCategory[food.categoryFood][2] as Int)
+            iconFoodCategory.setImageResource(listFoodCategory[food.categoryProduct][2] as Int)
            /* header.text = news.header
             subHeader.text = news.subhead
             subHeader2.text = news.subhead
@@ -54,19 +54,6 @@ class FoodAdapter() : ListAdapter<FoodModel, FoodAdapter.FoodHolder>(MyDiffCallb
            /* itemView.setOnClickListener{
                 listener.onClick(news)
             }*/
-        }
-
-    }
-
-
-    class MyDiffCallback : DiffUtil.ItemCallback<FoodModel>() {
-
-        override fun areItemsTheSame(oldItem: FoodModel, newItem: FoodModel): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: FoodModel, newItem: FoodModel): Boolean {
-            return oldItem == newItem
         }
     }
 

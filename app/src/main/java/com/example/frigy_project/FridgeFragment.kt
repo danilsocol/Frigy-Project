@@ -8,17 +8,18 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.frigy_project.adapters.FoodAdapter
+import com.example.frigy_project.adapters.FridgeAdapter
 import com.example.frigy_project.databinding.FragmentFridgeBinding
-import com.example.frigy_project.models.FoodModel
+import com.example.frigy_project.models.Product
 
 
 class FridgeFragment : Fragment() {
 
     private var _binding:  FragmentFridgeBinding? = null
-    private val foodAdapter = FoodAdapter()
-
     private val binding get() = _binding!!
+
+    private val fridgeAdapter = FridgeAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,15 +31,14 @@ class FridgeFragment : Fragment() {
         return binding.root
     }
 
-
     private fun init() {
-        val list = listOf<FoodModel>(
-            FoodModel(1, "Молоко", 0, false, 1.0, 0.0),
-            FoodModel(1, "Beer", 0, false, 1.0, 0.0),
-            FoodModel(1, "Milk", 0, false, 1.0, 0.0),
+        val list = listOf<Product>(
+            Product(1, "Молоко", 0,  1.0),
+            Product(1, "Beer", 0,  1.0),
+            Product(1, "Milk", 0,  1.0),
         )
 
-        foodAdapter.setData(list) // todo подумать над изменением setData на subbmitlist
+        fridgeAdapter.setData(list) // todo подумать над изменением setData на subbmitlist
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val searchBar = searchItem.actionView as SearchView
@@ -50,9 +50,9 @@ class FridgeFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    foodAdapter.filter.filter(null)
+                    fridgeAdapter.filter.filter(null)
                 } else {
-                    foodAdapter.filter.filter(newText)
+                    fridgeAdapter.filter.filter(newText)
                 }
                 return true
             }
@@ -64,7 +64,7 @@ class FridgeFragment : Fragment() {
                 context,
                 LinearLayoutManager.VERTICAL, false
             )
-            rcViewFridge.adapter = foodAdapter
+            rcViewFridge.adapter = fridgeAdapter
         }
     }
 
