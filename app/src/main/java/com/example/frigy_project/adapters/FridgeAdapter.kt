@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frigy_project.R
+import com.example.frigy_project.databinding.ItemImportantProductBinding
 import com.example.frigy_project.databinding.ItemProductBinding
 import com.example.frigy_project.filters.ProductFilter
 import com.example.frigy_project.models.CategoryList.listFoodCategory
@@ -23,23 +24,21 @@ class FridgeAdapter() : BaseAdapter<Product>() {
                 ProductHolder(binding)
             }
 
-            R.layout.item_product -> { //todo важный
-                val binding = ItemProductBinding.inflate(
+            R.layout.item_important_product -> {
+                val binding = ItemImportantProductBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false
                 )
                 ImportantProductHolder(binding)
             }
-
             else -> throw IllegalStateException("Неизвестный тип $viewType")
-
         }
     }
 
         override fun getItemViewType(position: Int): Int {
             return when (getItem(position)) {
                 is Product.DefaultProduct -> R.layout.item_product
-                is Product.ImportantProduct -> R.layout.item_product //todo важный
+                is Product.ImportantProduct -> R.layout.item_important_product
                 else -> Int.MAX_VALUE
             }
         }
@@ -50,7 +49,7 @@ class FridgeAdapter() : BaseAdapter<Product>() {
                     getItem(position) as Product.DefaultProduct
                 )
 
-                R.layout.item_product -> (holder as ImportantProductHolder).bind( // todo важный
+                R.layout.item_important_product -> (holder as ImportantProductHolder).bind(
                     getItem(position) as Product.ImportantProduct
                 )
 
@@ -88,7 +87,7 @@ class FridgeAdapter() : BaseAdapter<Product>() {
         }
     }
 
-    class ImportantProductHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ImportantProductHolder(private val binding: ItemImportantProductBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(food: Product) = with(binding) {
 
             nameFood.text = food.name
