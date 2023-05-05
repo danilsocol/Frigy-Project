@@ -11,7 +11,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/name_food"
+            android:id="@+id/name_recipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Название"
@@ -31,7 +31,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_food"/>
+            app:layout_constraintTop_toBottomOf="@+id/name_recipe"/>
 
 
 

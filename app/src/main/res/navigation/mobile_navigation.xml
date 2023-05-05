@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_list_recipes"
-        android:name="com.example.frigy_project.ListRecipesFragment"
+        android:name="com.example.frigy_project.RecipesFragment"
         android:label="@string/title_list_recipes"
         tools:layout="@layout/fragment_recipe_list" />
 

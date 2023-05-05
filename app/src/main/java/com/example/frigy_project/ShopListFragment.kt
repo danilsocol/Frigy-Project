@@ -13,8 +13,8 @@ import com.example.frigy_project.models.Product
 
 class ShopListFragment : Fragment() {
 
-    private var _binding:  FragmentShopListBinding? = null
     private val shopAdapter = ShopAdapter()
+    private var _binding:  FragmentShopListBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
