@@ -1,27 +1,33 @@
 package com.example.frigy_project.models
 
-open class Product (
+sealed class Product (
     open val id: Int,
     open val name: String,
-    open val categoryProduct: Int,
-    open val count: Double)
+    open val categoryProduct: Int)
 {
+
+    data class DefaultProduct(
+        override val id: Int,
+        override val name: String,
+        override val categoryProduct: Int,
+        val count: Double,
+    ): Product(id,name,categoryProduct)
 
     data class ImportantProduct(
         override val id: Int,
         override val name: String,
         override val categoryProduct: Int,
-        override val count: Double,
+        val count: Double,
         val maxCount: Double
-    ) : Product(id,name,categoryProduct,count)
+    ) : Product(id,name,categoryProduct)
 
     data class ProductToBuy(
         override val id: Int,
         override val name: String,
         override val categoryProduct: Int,
-        override val count: Double,
+        val countToBuy: Double,
         val isBuy : Boolean = false
-    ) : Product(id,name,categoryProduct,count)
+    ) : Product(id,name,categoryProduct)
 
 }
 

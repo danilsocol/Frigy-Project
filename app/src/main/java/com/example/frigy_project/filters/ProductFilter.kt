@@ -1,14 +1,16 @@
 package com.example.frigy_project.filters
 
-
 import android.widget.Filter
+import com.example.frigy_project.adapters.BaseAdapter
 import com.example.frigy_project.adapters.FridgeAdapter
 import com.example.frigy_project.models.Product
 import java.util.Locale
 
+class ProductFilter<T>(private val list: List<T>, private val adapter: BaseAdapter<T>) : Filter()
+where T : Product
+{
 
-class FridgeFilter(private val list: List<Product>, private val adapter: FridgeAdapter) : Filter() {
-    private var filteredList: List<Product>? = null
+    private var filteredList: List<T>? = null
 
     override fun performFiltering(constraint: CharSequence?): FilterResults {
 
@@ -17,7 +19,8 @@ class FridgeFilter(private val list: List<Product>, private val adapter: FridgeA
             }
             else {
             list.filter { foodModel ->
-                foodModel.name.toLowerCase(Locale.ROOT).contains(constraint.toString().lowercase(Locale.ROOT).trim())
+                foodModel.name.lowercase(Locale.ROOT)
+                    .contains(constraint.toString().lowercase(Locale.ROOT).trim())
                 }
             }
 
@@ -30,7 +33,7 @@ class FridgeFilter(private val list: List<Product>, private val adapter: FridgeA
         if (results?.values == null) {
             adapter.submitList(adapter.originalList)
         } else {
-            filteredList = results.values as List<Product>
+            filteredList = results.values as List<T>
             adapter.submitList(filteredList)
         }
     }

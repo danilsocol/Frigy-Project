@@ -33,9 +33,9 @@ class FridgeFragment : Fragment() {
 
     private fun init() {
         val list = listOf<Product>(
-            Product(1, "Молоко", 0,  1.0),
-            Product(1, "Beer", 0,  1.0),
-            Product(1, "Milk", 0,  1.0),
+            Product.DefaultProduct(1, "Молоко", 0,  1.0),
+            Product.DefaultProduct(1, "Beer", 0,  1.0),
+            Product.DefaultProduct(1, "Milk", 0,  1.0),
         )
 
         fridgeAdapter.setData(list) // todo подумать над изменением setData на subbmitlist

@@ -35,7 +35,7 @@ class ShopListFragment : Fragment() {
             Product.ProductToBuy(1, "Milk", 0, 1.0),
         )
 
-        shopAdapter.setData(list) // todo подумать над изменением setData на subbmitlist
+        shopAdapter.setData(list)
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val searchBar = searchItem.actionView as SearchView
@@ -47,9 +47,9 @@ class ShopListFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    foodAdapter.filter.filter(null)
+                    shopAdapter.filter.filter(null)
                 } else {
-                    foodAdapter.filter.filter(newText)
+                    shopAdapter.filter.filter(newText)
                 }
                 return true
             }
@@ -57,11 +57,11 @@ class ShopListFragment : Fragment() {
         )
 
         binding.apply {
-            rcViewFridge.layoutManager = LinearLayoutManager(
+            rcViewFoodToBuy.layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.VERTICAL, false
             )
-            rcViewFridge.adapter = foodAdapter
+            rcViewFoodToBuy.adapter = shopAdapter
         }
     }
 
