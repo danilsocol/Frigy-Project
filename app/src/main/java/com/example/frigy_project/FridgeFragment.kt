@@ -2,6 +2,7 @@ package com.example.frigy_project
 
 
 import android.os.Bundle
+import android.service.autofill.OnClickAction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,24 +39,24 @@ class FridgeFragment : Fragment() {
             Product.DefaultProduct(1, "Milk", 0,  1.0),
         )
 
-        fridgeAdapter.setData(list) // todo подумать над изменением setData на subbmitlist
+        fridgeAdapter.setData(list)
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
+        val addItem = binding.toolbar.menu.findItem(R.id.add)
         val searchBar = searchItem.actionView as SearchView
 
         searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) { //todo проверка на null
-                    fridgeAdapter.filter.filter(null)
-                } else {
-                    fridgeAdapter.filter.filter(newText)
-                }
+                addItem.isVisible = newText.isNullOrEmpty()
+                fridgeAdapter.filter.filter(newText)
                 return true
             }
+
         }
         )
 

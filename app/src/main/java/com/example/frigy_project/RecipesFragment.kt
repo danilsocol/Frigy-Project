@@ -59,6 +59,7 @@ class RecipesFragment : Fragment() {
 
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
+        val addItem = binding.toolbar.menu.findItem(R.id.add)
         val searchBar = searchItem.actionView as SearchView
 
         searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -67,11 +68,8 @@ class RecipesFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
-                    recipeAdapter.filter.filter(null)
-                } else {
-                    recipeAdapter.filter.filter(newText)
-                }
+                addItem.isVisible = newText.isNullOrEmpty()
+                recipeAdapter.filter.filter(newText)
                 return true
             }
         }

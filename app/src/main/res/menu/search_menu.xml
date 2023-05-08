@@ -7,6 +7,12 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:icon="@drawable/search_32"
         app:showAsAction="always|collapseActionView"
+        />
 
+    <item
+        android:id="@+id/add"
+        android:title="add"
+        android:icon="@drawable/add_32"
+        app:showAsAction="always|collapseActionView"
         />
 </menu>
