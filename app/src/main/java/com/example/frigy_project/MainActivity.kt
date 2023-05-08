@@ -1,11 +1,11 @@
 package com.example.frigy_project
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.BoringLayout
 import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -33,29 +33,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_shop_cart, R.id.navigation_fridge, R.id.navigation_list_recipes
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
-
-/*    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-
-        menuInflater.inflate(R.menu.bottom_nav_menu, menu)
-        val menuItem: MenuItem = menu.findItem(R.id.search)
-        val searchView: SearchView = menuItem.actionView as SearchView
-
-        searchView.setOnQueryTextListener (object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                tempArrayListClear
-            }
-        })
-
-    }*/
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
@@ -78,4 +59,6 @@ class MainActivity : AppCompatActivity() {
         )
     return true
     }
+
+
 }
