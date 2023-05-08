@@ -1,8 +1,6 @@
 package com.example.frigy_project
 
-
 import android.os.Bundle
-import android.service.autofill.OnClickAction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +38,12 @@ class FridgeFragment : Fragment() {
         )
 
         fridgeAdapter.setData(list)
+
+      /*  val bottomFragment = CreateProductFragment() //TODO
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.containerBottomSheet, bottomFragment)
+            .commit()*/
+
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val addItem = binding.toolbar.menu.findItem(R.id.add)
