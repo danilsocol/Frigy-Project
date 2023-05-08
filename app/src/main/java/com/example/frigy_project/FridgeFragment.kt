@@ -49,7 +49,7 @@ class FridgeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
+                if (newText.isNullOrEmpty()) { //todo проверка на null
                     fridgeAdapter.filter.filter(null)
                 } else {
                     fridgeAdapter.filter.filter(newText)
