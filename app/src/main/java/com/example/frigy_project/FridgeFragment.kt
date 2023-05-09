@@ -39,30 +39,28 @@ class FridgeFragment : Fragment() {
 
         fridgeAdapter.setData(list)
 
-      /*  val bottomFragment = CreateProductFragment() //TODO
-        getSupportFragmentManager().beginTransaction()
-            .replace(R.id.containerBottomSheet, bottomFragment)
-            .commit()*/
-
-
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val addItem = binding.toolbar.menu.findItem(R.id.add)
         val searchBar = searchItem.actionView as SearchView
 
         searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
 
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    addItem.isVisible = newText.isNullOrEmpty()
+                    fridgeAdapter.filter.filter(newText)
+                    return true
+                }
             }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                addItem.isVisible = newText.isNullOrEmpty()
-                fridgeAdapter.filter.filter(newText)
-                return true
-            }
-
-        }
         )
+
+        addItem.setOnMenuItemClickListener {
+            val newBottomSheetFragment = CreateProductFragment()
+            newBottomSheetFragment.show(requireActivity().supportFragmentManager, "CreateProductFragment")
+            return@setOnMenuItemClickListener true
+        }
 
         binding.apply {
             rcViewFridge.layoutManager = LinearLayoutManager(
@@ -75,7 +73,7 @@ class FridgeFragment : Fragment() {
 
 
     override fun onDestroyView() {
-        super.onDestroyView() //todo удаление
+        super.onDestroyView()
         _binding = null
     }
 }
