@@ -22,9 +22,20 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
     ): View? {
         _binding = FragmentCreateProductBinding.inflate(layoutInflater)
 
+        init()
         return binding.root
     }
 
+    private fun init(){
+        binding.closeBtn.setOnClickListener{dismiss()}
+        binding.submitBtn.setOnClickListener { ClickSubmitBtn() }
+    }
+
+
+    fun ClickSubmitBtn()
+    {
+        //todo обработка нажатия
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
