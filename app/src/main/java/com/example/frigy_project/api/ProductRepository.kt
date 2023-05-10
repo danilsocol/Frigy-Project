@@ -3,16 +3,20 @@ package com.example.frigy_project.api
 import com.example.frigy_project.api.request.ProductRequest
 import com.example.frigy_project.models.Product
 
-class ProductRepository : ProductAPI {
-    override suspend fun getProductById(id: String): Product {
-        TODO("Not yet implemented")
+class ProductRepository {
+
+    private val retrofit = RetrofitBuilder.getClient()
+    private val productApi = retrofit!!.create(ProductAPI::class.java)
+
+    suspend fun getProductById(id: String): Product {
+        return productApi.getProductById(id)
     }
 
-    override suspend fun getAllProducts(): List<Product> {
-        TODO("Not yet implemented")
+    suspend fun getAllProducts(): List<Product> {
+        return productApi.getAllProducts()
     }
 
-    override suspend fun createProduct(productRequest: ProductRequest): Product {
-        TODO("Not yet implemented")
+    suspend fun createProduct(productRequest: ProductRequest): Product {
+        return productApi.createProduct(productRequest)
     }
 }

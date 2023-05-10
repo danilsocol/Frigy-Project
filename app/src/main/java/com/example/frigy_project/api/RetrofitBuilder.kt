@@ -3,7 +3,7 @@ package com.example.frigy_project.api
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitBuilder {
+object RetrofitBuilder {
 
     private val BASE_URL = "" //todo базовый url
     private var retrofit: Retrofit? = null
