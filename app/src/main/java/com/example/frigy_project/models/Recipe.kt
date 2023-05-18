@@ -5,4 +5,4 @@ data class Recipe(
     override val name: String,
     val categoryRecipe: Int,
     val productList : List<Product>
-) : BaseModel(id,name)
+) : IFilterable

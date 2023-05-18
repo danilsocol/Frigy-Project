@@ -6,7 +6,6 @@ import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frigy_project.databinding.ItemShopBinding
 import com.example.frigy_project.filters.TitleFilter
-import com.example.frigy_project.models.CategoryList
 import com.example.frigy_project.models.Product
 
 class ShopAdapter : BaseAdapter<Product>() {
@@ -36,7 +35,7 @@ class ShopAdapter : BaseAdapter<Product>() {
 
             nameFood.text = food.name
             //countFood.text = (food.count.toString())
-            iconFoodCategory.setImageResource(CategoryList.listFoodCategory[food.categoryProduct][2] as Int)
+            iconFoodCategory.setImageResource(food.productCategory.iconCategory)
           /*  header.text = news.header
             subHeader.text = news.subhead
             subHeader2.text = news.subhead

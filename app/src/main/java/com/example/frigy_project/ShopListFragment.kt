@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.adapters.ShopAdapter
 import com.example.frigy_project.databinding.FragmentShopListBinding
+import com.example.frigy_project.models.ListСategories.ProductCategoryList
 import com.example.frigy_project.models.Product
 
 class ShopListFragment : Fragment() {
@@ -30,9 +31,9 @@ class ShopListFragment : Fragment() {
 
     private fun init() {
         val list = listOf<Product>(
-            Product.ProductToBuy(1, "Молоко", 0, 1.0),
-            Product.ProductToBuy(1, "Beer", 0, 1.0),
-            Product.ProductToBuy(1, "Milk", 0, 1.0),
+            Product.ProductToBuy(1, "Молоко", ProductCategoryList.productCategoryList[0], 1),
+            Product.ProductToBuy(1, "Beer", ProductCategoryList.productCategoryList[0], 1),
+            Product.ProductToBuy(1, "Milk", ProductCategoryList.productCategoryList[0], 1),
         )
 
         shopAdapter.setData(list)

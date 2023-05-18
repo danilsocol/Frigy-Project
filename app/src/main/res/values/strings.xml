@@ -3,5 +3,9 @@
     <string name="title_list_recipes">Список рецептов</string>
     <string name="title_fridge">Холодильник</string>
     <string name="title_shop_cart">Список покупок</string>
-
+    <string-array name="product_category">
+        <item>Жидкость</item>
+        <item>Взвешиваемый</item>
+        <item>Поштучный</item>
+    </string-array>
 </resources>

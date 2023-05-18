@@ -13,9 +13,9 @@
 
         <ImageView
             android:id="@+id/icon_food_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/liquid"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/product_category_liquid_64"
             android:layout_marginVertical="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

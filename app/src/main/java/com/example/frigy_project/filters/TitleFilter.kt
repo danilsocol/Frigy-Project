@@ -2,11 +2,11 @@ package com.example.frigy_project.filters
 
 import android.widget.Filter
 import com.example.frigy_project.adapters.BaseAdapter
-import com.example.frigy_project.models.BaseModel
+import com.example.frigy_project.models.IFilterable
 import java.util.Locale
 
 class TitleFilter<T>(private val list: List<T>, private val adapter: BaseAdapter<T>) : Filter()
-        where T : BaseModel
+        where T : IFilterable
 {
 
     private var filteredList: List<T>? = null

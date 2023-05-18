@@ -1,5 +1,6 @@
 package com.example.frigy_project.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -8,7 +9,6 @@ import com.example.frigy_project.R
 import com.example.frigy_project.databinding.ItemImportantProductBinding
 import com.example.frigy_project.databinding.ItemProductBinding
 import com.example.frigy_project.filters.TitleFilter
-import com.example.frigy_project.models.CategoryList.listFoodCategory
 import com.example.frigy_project.models.Product
 
 class FridgeAdapter() : BaseAdapter<Product>() {
@@ -68,42 +68,22 @@ class FridgeAdapter() : BaseAdapter<Product>() {
 
     class ProductHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: Product) = with(binding) {
+        fun bind(food: Product.DefaultProduct) = with(binding) {
 
             nameFood.text = food.name
-            //   countFood.text = (food.count.toString())
-            iconFoodCategory.setImageResource(listFoodCategory[food.categoryProduct][2] as Int)
-            /* header.text = news.header
-        subHeader.text = news.subhead
-        subHeader2.text = news.subhead
-        title.text = news.title
-        image.setImageResource(news.iconId)
-        avatar.setImageResource(news.userAvatarId)
-        description.text = news.description*/
-
-            /* itemView.setOnClickListener{
-            listener.onClick(news)
-        }*/
+            countFood.setText(food.count.toString())
+            iconFoodCategory.setImageResource(food.productCategory.iconCategory)
+            unit.text = food.productCategory.unit
         }
     }
 
     class ImportantProductHolder(private val binding: ItemImportantProductBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: Product) = with(binding) {
+        fun bind(food: Product.ImportantProduct) = with(binding) {
 
             nameFood.text = food.name
-            //   countFood.text = (food.count.toString())
-            iconFoodCategory.setImageResource(listFoodCategory[food.categoryProduct][2] as Int)
-            /* header.text = news.header
-             subHeader.text = news.subhead
-             subHeader2.text = news.subhead
-             title.text = news.title
-             image.setImageResource(news.iconId)
-             avatar.setImageResource(news.userAvatarId)
-             description.text = news.description*/
-
-            /* itemView.setOnClickListener{
-                 listener.onClick(news)
-             }*/
+            countFood.setText(food.count.toString())
+            iconFoodCategory.setImageResource(food.productCategory.iconCategory)
+            unit.text = food.productCategory.unit
         }
     }
 

@@ -12,6 +12,7 @@ import com.example.frigy_project.adapters.RecipeAdapter
 import com.example.frigy_project.adapters.ShopAdapter
 import com.example.frigy_project.databinding.FragmentRecipeListBinding
 import com.example.frigy_project.databinding.FragmentShopListBinding
+import com.example.frigy_project.models.ListСategories.ProductCategoryList
 import com.example.frigy_project.models.Product
 import com.example.frigy_project.models.Recipe
 
@@ -36,21 +37,21 @@ class RecipesFragment : Fragment() {
         val list = listOf<Recipe>(
             Recipe(1, "Суп с молоком", 0,
                 listOf(
-                    Product.DefaultProduct(1, "Молоко", 0, 1.0),
-                    Product.DefaultProduct(2, "Креветки", 0, 1.0),
+                    Product.DefaultProduct(1, "Молоко", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
                 )
             ),
 
             Recipe(2, "Суп с пивом", 0,
                 listOf(
-                    Product.DefaultProduct(1, "Пиво", 0, 1.0),
-                    Product.DefaultProduct(2, "Креветки", 0, 1.0),
+                    Product.DefaultProduct(1, "Пиво", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
                 )
             ),
             Recipe(2, "test", 0,
                 listOf(
-                    Product.DefaultProduct(1, "Пиво", 0, 1.0),
-                    Product.DefaultProduct(2, "Креветки", 0, 1.0),
+                    Product.DefaultProduct(1, "Пиво", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
                 )
             ),
         )
