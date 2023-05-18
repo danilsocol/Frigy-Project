@@ -29,7 +29,7 @@
             android:id="@+id/icon_food_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/recipe_category_soup"
+            android:src="@drawable/recipe_category_soup_64"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
