@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.frigy_project.R
 import com.example.frigy_project.databinding.ItemImportantProductBinding
 import com.example.frigy_project.databinding.ItemProductBinding
-import com.example.frigy_project.filters.ProductFilter
+import com.example.frigy_project.filters.TitleFilter
 import com.example.frigy_project.models.CategoryList.listFoodCategory
 import com.example.frigy_project.models.Product
 
@@ -63,7 +63,7 @@ class FridgeAdapter() : BaseAdapter<Product>() {
         }
 
         override fun getFilter(): Filter {
-            return ProductFilter(originalList!!.toList(), this)
+            return TitleFilter(originalList!!.toList(), this)
         }
 
     class ProductHolder(private val binding: ItemProductBinding) :

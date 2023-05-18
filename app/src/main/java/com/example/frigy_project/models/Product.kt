@@ -1,9 +1,9 @@
 package com.example.frigy_project.models
 
 sealed class Product (
-    open val id: Int,
-    open val name: String,
-    open val categoryProduct: Int)
+    override val id: Int,
+    override val name: String,
+    open val categoryProduct: Int) : BaseModel(id,name)
 {
 
     data class DefaultProduct(

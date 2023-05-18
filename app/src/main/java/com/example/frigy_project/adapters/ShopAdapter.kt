@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.frigy_project.databinding.ItemProductBinding
 import com.example.frigy_project.databinding.ItemShopBinding
-import com.example.frigy_project.filters.ProductFilter
+import com.example.frigy_project.filters.TitleFilter
 import com.example.frigy_project.models.CategoryList
 import com.example.frigy_project.models.Product
 
@@ -29,7 +28,7 @@ class ShopAdapter : BaseAdapter<Product>() {
     }
 
     override fun getFilter(): Filter {
-        return ProductFilter(originalList!!.toList(), this)
+        return TitleFilter(originalList!!.toList(), this)
     }
 
     class ProductToBuyHolder(private val binding: ItemShopBinding) : RecyclerView.ViewHolder(binding.root) {

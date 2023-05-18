@@ -2,12 +2,11 @@ package com.example.frigy_project.filters
 
 import android.widget.Filter
 import com.example.frigy_project.adapters.BaseAdapter
-import com.example.frigy_project.adapters.FridgeAdapter
-import com.example.frigy_project.models.Product
+import com.example.frigy_project.models.BaseModel
 import java.util.Locale
 
-class ProductFilter<T>(private val list: List<T>, private val adapter: BaseAdapter<T>) : Filter()
-where T : Product
+class TitleFilter<T>(private val list: List<T>, private val adapter: BaseAdapter<T>) : Filter()
+        where T : BaseModel
 {
 
     private var filteredList: List<T>? = null
@@ -16,13 +15,13 @@ where T : Product
 
         filteredList = if (constraint.isNullOrEmpty()) {
             list
-            }
-            else {
+        }
+        else {
             list.filter { foodModel ->
                 foodModel.name.lowercase(Locale.ROOT)
                     .contains(constraint.toString().lowercase(Locale.ROOT).trim())
-                }
             }
+        }
 
         val results = FilterResults()
         results.values = filteredList

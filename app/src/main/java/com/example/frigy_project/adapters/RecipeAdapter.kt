@@ -5,9 +5,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frigy_project.databinding.ItemRecipeBinding
-import com.example.frigy_project.filters.ProductFilter
-import com.example.frigy_project.filters.RecipeFilter
-import com.example.frigy_project.models.CategoryList
+import com.example.frigy_project.filters.TitleFilter
 import com.example.frigy_project.models.Recipe
 
 class RecipeAdapter : BaseAdapter<Recipe>() {
@@ -26,7 +24,7 @@ class RecipeAdapter : BaseAdapter<Recipe>() {
     }
 
     override fun getFilter(): Filter {
-        return RecipeFilter(originalList!!.toList(), this)
+        return TitleFilter(originalList!!.toList(), this)
     }
 
     class RecipeHolder(private val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root){
