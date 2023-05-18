@@ -30,7 +30,7 @@ class RecipeAdapter : BaseAdapter<Recipe>() {
     class RecipeHolder(private val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(recipe: Recipe) = with(binding) {
             nameRecipe.text = recipe.name
-
+            iconFoodCategory.setImageResource(recipe.categoryRecipe.iconCategory)
         }
     }
 }

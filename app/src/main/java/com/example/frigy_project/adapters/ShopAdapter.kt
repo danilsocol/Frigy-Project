@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.frigy_project.databinding.ItemProductBinding
 import com.example.frigy_project.databinding.ItemShopBinding
 import com.example.frigy_project.filters.TitleFilter
 import com.example.frigy_project.models.Product
@@ -18,7 +19,7 @@ class ShopAdapter : BaseAdapter<Product>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ProductToBuyHolder).bind(getItem(position))
+        (holder as ProductToBuyHolder).bind(getItem(position) as Product.ProductToBuy)
     }
 
     override fun setData(newList: List<Product>) {
@@ -31,27 +32,17 @@ class ShopAdapter : BaseAdapter<Product>() {
     }
 
     class ProductToBuyHolder(private val binding: ItemShopBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: Product) = with(binding) {
+        fun bind(food: Product.ProductToBuy) = with(binding) {
 
             nameFood.text = food.name
-            //countFood.text = (food.count.toString())
+            countFood.text = food.countToBuy.toString()
             iconFoodCategory.setImageResource(food.productCategory.iconCategory)
-          /*  header.text = news.header
-            subHeader.text = news.subhead
-            subHeader2.text = news.subhead
-            title.text = news.title
-            image.setImageResource(news.iconId)
-            avatar.setImageResource(news.userAvatarId)
-            description.text = news.description
-
-
-            itemView.setOnClickListener{
-                listener.onClick(news)
-            }*/
+            unit.text = food.productCategory.unit
 
         }
 
     }
+
 
 
 }

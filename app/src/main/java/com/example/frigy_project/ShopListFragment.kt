@@ -32,8 +32,8 @@ class ShopListFragment : Fragment() {
     private fun init() {
         val list = listOf<Product>(
             Product.ProductToBuy(1, "Молоко", ProductCategoryList.productCategoryList[0], 1),
-            Product.ProductToBuy(1, "Beer", ProductCategoryList.productCategoryList[0], 1),
-            Product.ProductToBuy(1, "Milk", ProductCategoryList.productCategoryList[0], 1),
+            Product.ProductToBuy(1, "Beer", ProductCategoryList.productCategoryList[1], 2),
+            Product.ProductToBuy(1, "Milk", ProductCategoryList.productCategoryList[2], 4),
         )
 
         shopAdapter.setData(list)
