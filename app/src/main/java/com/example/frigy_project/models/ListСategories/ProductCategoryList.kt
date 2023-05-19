@@ -3,7 +3,7 @@ package com.example.frigy_project.models.ListСategories
 import com.example.frigy_project.R
 import com.example.frigy_project.models.ProductCategory
 
-object ProductCategoryList { //todo переделать в sealde класс
+object ProductCategoryList {
 
     val productCategoryList  =  listOf(
         (ProductCategory(1,"Жидкость", R.drawable.product_category_liquid_64,"литр")),

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.adapters.RecipeAdapter
@@ -14,13 +16,16 @@ import com.example.frigy_project.models.ListСategories.ProductCategoryList
 import com.example.frigy_project.models.ListСategories.RecipeCategoryList
 import com.example.frigy_project.models.Product
 import com.example.frigy_project.models.Recipe
+import com.example.frigy_project.viewModels.FridgeFragmentViewModel
+import com.example.frigy_project.viewModels.RecipeFragmentViewModel
 
 class RecipesFragment : Fragment() {
 
-    private val recipeAdapter = RecipeAdapter()
     private var _binding:  FragmentRecipeListBinding? = null
     private val binding get() = _binding!!
 
+    private val recipeAdapter = RecipeAdapter()
+    private lateinit var viewModel : RecipeFragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,33 +34,18 @@ class RecipesFragment : Fragment() {
         _binding = FragmentRecipeListBinding.inflate(layoutInflater)
 
         init()
+        viewModel.init()
         return binding.root
     }
 
     private fun init(){
-        val list = listOf<Recipe>(
-            Recipe(1, "Суп с молоком", RecipeCategoryList.recipeCategoryList[0],
-                listOf(
-                    Product.DefaultProduct(1, "Молоко", ProductCategoryList.productCategoryList[0], 1),
-                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
-                )
-            ),
+        viewModel = ViewModelProvider(this)[RecipeFragmentViewModel::class.java]
 
-            Recipe(2, "Суп с пивом", RecipeCategoryList.recipeCategoryList[1],
-                listOf(
-                    Product.DefaultProduct(1, "Пиво", ProductCategoryList.productCategoryList[0], 1),
-                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
-                )
-            ),
-            Recipe(2, "test", RecipeCategoryList.recipeCategoryList[2],
-                listOf(
-                    Product.DefaultProduct(1, "Пиво", ProductCategoryList.productCategoryList[0], 1),
-                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
-                )
-            ),
-        )
+        val observer = Observer<List<Recipe>?> { list ->
+            recipeAdapter.setData(list)
+        }
+        viewModel.recipes.observe(viewLifecycleOwner, observer)
 
-        recipeAdapter.setData(list)
 
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)

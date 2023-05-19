@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.adapters.FridgeAdapter
 import com.example.frigy_project.databinding.FragmentFridgeBinding
 import com.example.frigy_project.models.ListСategories.ProductCategoryList
 import com.example.frigy_project.models.Product
-import com.example.frigy_project.models.ProductCategory
+import com.example.frigy_project.viewModels.FridgeFragmentViewModel
 
 
 class FridgeFragment : Fragment() {
@@ -20,6 +22,7 @@ class FridgeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val fridgeAdapter = FridgeAdapter()
+    private lateinit var viewModel : FridgeFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,17 +32,17 @@ class FridgeFragment : Fragment() {
         _binding = FragmentFridgeBinding.inflate(layoutInflater)
 
         init()
+        viewModel.init()
         return binding.root
     }
 
     private fun init() {
-        val list = listOf<Product>(
-            Product.DefaultProduct(1, "Молоко", ProductCategoryList.productCategoryList[0],  1),
-            Product.DefaultProduct(2, "Beer", ProductCategoryList.productCategoryList[1],  2),
-            Product.DefaultProduct(3, "Milk", ProductCategoryList.productCategoryList[2],  3),
-        )
+        viewModel = ViewModelProvider(this)[FridgeFragmentViewModel::class.java]
 
-        fridgeAdapter.setData(list)
+        val observer = Observer<List<Product>?> { list ->
+            fridgeAdapter.setData(list)
+        }
+        viewModel.products.observe(viewLifecycleOwner, observer)
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val addItem = binding.toolbar.menu.findItem(R.id.add)

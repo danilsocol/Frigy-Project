@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_shop_cart"
-        android:name="com.example.frigy_project.ShopListFragment"
+        android:name="com.example.frigy_project.ShopFragment"
         android:label="@string/title_shop_cart"
         tools:layout="@layout/fragment_shop_list" >
     </fragment>

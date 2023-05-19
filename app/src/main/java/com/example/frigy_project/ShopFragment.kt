@@ -6,18 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.adapters.ShopAdapter
 import com.example.frigy_project.databinding.FragmentShopListBinding
-import com.example.frigy_project.models.ListСategories.ProductCategoryList
 import com.example.frigy_project.models.Product
+import com.example.frigy_project.viewModels.ShopFragmentViewModel
 
-class ShopListFragment : Fragment() {
+class ShopFragment : Fragment() {
 
-    private val shopAdapter = ShopAdapter()
     private var _binding:  FragmentShopListBinding? = null
     private val binding get() = _binding!!
 
+    private val shopAdapter = ShopAdapter()
+    private lateinit var viewModel : ShopFragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,17 +29,17 @@ class ShopListFragment : Fragment() {
         _binding = FragmentShopListBinding.inflate(layoutInflater)
 
         init()
+        viewModel.init()
         return binding.root
     }
 
     private fun init() {
-        val list = listOf<Product>(
-            Product.ProductToBuy(1, "Молоко", ProductCategoryList.productCategoryList[0], 1),
-            Product.ProductToBuy(1, "Beer", ProductCategoryList.productCategoryList[1], 2),
-            Product.ProductToBuy(1, "Milk", ProductCategoryList.productCategoryList[2], 4),
-        )
+        viewModel = ViewModelProvider(this)[ShopFragmentViewModel::class.java]
 
-        shopAdapter.setData(list)
+        val observer = Observer<List<Product>?> { list ->
+            shopAdapter.setData(list)
+        }
+        viewModel.products.observe(viewLifecycleOwner, observer)
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val addItem = binding.toolbar.menu.findItem(R.id.add)
