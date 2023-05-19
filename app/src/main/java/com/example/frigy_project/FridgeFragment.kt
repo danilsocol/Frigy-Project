@@ -11,8 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.adapters.FridgeAdapter
 import com.example.frigy_project.databinding.FragmentFridgeBinding
-import com.example.frigy_project.models.ListСategories.ProductCategoryList
-import com.example.frigy_project.models.Product
+import com.example.frigy_project.dtos.Product
 import com.example.frigy_project.viewModels.FridgeFragmentViewModel
 
 

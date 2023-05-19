@@ -6,7 +6,7 @@ import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frigy_project.databinding.ItemRecipeBinding
 import com.example.frigy_project.filters.TitleFilter
-import com.example.frigy_project.models.Recipe
+import com.example.frigy_project.dtos.Recipe
 
 class RecipeAdapter : BaseAdapter<Recipe>() {
     override fun setData(newList: List<Recipe>) {
@@ -31,6 +31,7 @@ class RecipeAdapter : BaseAdapter<Recipe>() {
         fun bind(recipe: Recipe) = with(binding) {
             nameRecipe.text = recipe.name
             iconFoodCategory.setImageResource(recipe.categoryRecipe.iconCategory)
+
         }
     }
 }

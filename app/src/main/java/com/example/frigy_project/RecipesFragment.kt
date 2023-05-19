@@ -12,11 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.adapters.RecipeAdapter
 import com.example.frigy_project.databinding.FragmentRecipeListBinding
-import com.example.frigy_project.models.ListСategories.ProductCategoryList
-import com.example.frigy_project.models.ListСategories.RecipeCategoryList
-import com.example.frigy_project.models.Product
-import com.example.frigy_project.models.Recipe
-import com.example.frigy_project.viewModels.FridgeFragmentViewModel
+import com.example.frigy_project.dtos.Recipe
 import com.example.frigy_project.viewModels.RecipeFragmentViewModel
 
 class RecipesFragment : Fragment() {

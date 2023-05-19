@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.frigy_project.models.ListСategories.ProductCategoryList
-import com.example.frigy_project.models.Product
+import com.example.frigy_project.dtos.Product
 
 class FridgeFragmentViewModel : ViewModel() {
 

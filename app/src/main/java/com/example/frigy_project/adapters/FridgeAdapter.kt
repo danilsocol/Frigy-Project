@@ -1,6 +1,5 @@
 package com.example.frigy_project.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -9,7 +8,7 @@ import com.example.frigy_project.R
 import com.example.frigy_project.databinding.ItemImportantProductBinding
 import com.example.frigy_project.databinding.ItemProductBinding
 import com.example.frigy_project.filters.TitleFilter
-import com.example.frigy_project.models.Product
+import com.example.frigy_project.dtos.Product
 
 class FridgeAdapter() : BaseAdapter<Product>() {
 

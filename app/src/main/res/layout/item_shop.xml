@@ -63,13 +63,14 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/buy"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/check_64"
             android:layout_marginRight="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+
             />
 
 

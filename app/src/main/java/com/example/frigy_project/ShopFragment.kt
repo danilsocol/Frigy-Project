@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.adapters.ShopAdapter
 import com.example.frigy_project.databinding.FragmentShopListBinding
-import com.example.frigy_project.models.Product
+import com.example.frigy_project.dtos.Product
 import com.example.frigy_project.viewModels.ShopFragmentViewModel
 
 class ShopFragment : Fragment() {

@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.frigy_project.models.ListСategories.ProductCategoryList
 import com.example.frigy_project.models.ListСategories.RecipeCategoryList
-import com.example.frigy_project.models.Product
-import com.example.frigy_project.models.Recipe
+import com.example.frigy_project.dtos.Product
+import com.example.frigy_project.dtos.Recipe
 
 class RecipeFragmentViewModel : ViewModel() {
     private var recipesMutable = MutableLiveData<List<Recipe>?>()

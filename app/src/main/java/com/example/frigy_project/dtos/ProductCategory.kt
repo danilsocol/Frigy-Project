@@ -1,4 +1,4 @@
-package com.example.frigy_project.models
+package com.example.frigy_project.dtos
 
 data class ProductCategory(
     val id: Int,

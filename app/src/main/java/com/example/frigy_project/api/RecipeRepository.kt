@@ -1,9 +1,7 @@
 package com.example.frigy_project.api
 
-import com.example.frigy_project.api.request.ProductRequest
 import com.example.frigy_project.api.request.RecipeRequest
-import com.example.frigy_project.models.Product
-import com.example.frigy_project.models.Recipe
+import com.example.frigy_project.dtos.Recipe
 
 class RecipeRepository {
 

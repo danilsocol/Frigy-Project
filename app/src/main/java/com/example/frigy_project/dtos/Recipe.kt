@@ -1,4 +1,4 @@
-package com.example.frigy_project.models
+package com.example.frigy_project.dtos
 
 data class Recipe(
     override val id: Int,

@@ -1,7 +1,7 @@
 package com.example.frigy_project.models.ListСategories
 
 import com.example.frigy_project.R
-import com.example.frigy_project.models.ProductCategory
+import com.example.frigy_project.dtos.ProductCategory
 
 object ProductCategoryList {
 
