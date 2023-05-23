@@ -11,3 +11,4 @@ object ProductCategoryList {
         (ProductCategory(3,"Поштучный", R.drawable.product_category_piece_64,"шт"))
     )
 }
+

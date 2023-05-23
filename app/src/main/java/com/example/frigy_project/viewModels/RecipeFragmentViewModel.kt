@@ -15,23 +15,23 @@ class RecipeFragmentViewModel : ViewModel() {
 
     fun init() {
         recipesMutable.value = listOf<Recipe>(
-            Recipe(1, "Суп с молоком", RecipeCategoryList.recipeCategoryList[0],
+            Recipe( "Суп с молоком", RecipeCategoryList.recipeCategoryList[0],
                 listOf(
-                    Product.DefaultProduct(1, "Молоко", ProductCategoryList.productCategoryList[0], 1),
-                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct("Молоко", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct("Креветки", ProductCategoryList.productCategoryList[0], 1),
                 )
             ),
 
-            Recipe(2, "Суп с пивом", RecipeCategoryList.recipeCategoryList[1],
+            Recipe( "Суп с пивом", RecipeCategoryList.recipeCategoryList[1],
                 listOf(
-                    Product.DefaultProduct(1, "Пиво", ProductCategoryList.productCategoryList[0], 1),
-                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct( "Пиво", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct( "Креветки", ProductCategoryList.productCategoryList[0], 1),
                 )
             ),
-            Recipe(2, "test", RecipeCategoryList.recipeCategoryList[2],
+            Recipe( "test", RecipeCategoryList.recipeCategoryList[2],
                 listOf(
-                    Product.DefaultProduct(1, "Пиво", ProductCategoryList.productCategoryList[0], 1),
-                    Product.DefaultProduct(2, "Креветки", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct("Пиво", ProductCategoryList.productCategoryList[0], 1),
+                    Product.DefaultProduct( "Креветки", ProductCategoryList.productCategoryList[0], 1),
                 )
             ),
         )

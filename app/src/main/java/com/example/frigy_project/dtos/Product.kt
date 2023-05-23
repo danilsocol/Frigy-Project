@@ -1,55 +1,57 @@
 package com.example.frigy_project.dtos
 
+import com.example.frigy_project.R
+import com.example.frigy_project.models.ListСategories.ProductCategoryList.productCategoryList
+import com.example.frigy_project.models.ProductCreate
+
 sealed class Product (
-    override val id: Int,
     override val name: String,
     open val productCategory: ProductCategory) : IFilterable
 {
 
     data class DefaultProduct(
-        override val id: Int,
         override val name: String,
         override val productCategory: ProductCategory,
         val count: Int,
-    ): Product(id,name,productCategory)
+    ): Product(name,productCategory)
 
     data class ImportantProduct(
-        override val id: Int,
         override val name: String,
         override val productCategory: ProductCategory,
         val count: Int,
         val maxCount: Int
-    ) : Product(id,name,productCategory)
+    ) : Product(name,productCategory)
 
     data class ProductToBuy(
-        override val id: Int,
         override val name: String,
         override val productCategory: ProductCategory,
         val countToBuy: Int,
         val isBuy : Boolean = false
-    ) : Product(id,name,productCategory)
+    ) : Product(name,productCategory)
 
     data class ImportantProductToBuy(
-        override val id: Int,
         override val name: String,
         override val productCategory: ProductCategory,
         val count: Int,
         val maxCount: Int
-    ) : Product(id,name,productCategory)
+    ) : Product(name,productCategory)
 
-   /* companion object Factory {
-        private fun createProduct(res: Product): Product {
-            return if (res.isImportant == true) {
-                DefaultProduct(res., res.name)
-            } else () {
-                ImportantProduct(res.title, res.subtitle, res.img, res.isCircle)
+    companion object Factory {
+        fun createProduct(data: ProductCreate): Product {
+            val category : ProductCategory = when(data.productCategory){ //todo переделать под enum?
+                "Жидкость" -> productCategoryList[0]
+                "Взвешиваемый" -> productCategoryList[1]
+                "Поштучный" -> productCategoryList[2]
+                else -> throw Exception()
+            }
+
+            return if (!data.isImportant) {
+                DefaultProduct(data.name,category,0)
+            } else {
+                ImportantProduct(data.name,category,0,data.maxCount!!)
             }
         }
-
-        fun getTools(responses: List<ToolRequest>): List<Tool> {
-            return responses.map { getTool(it) }
-        }
-    }*/
+    }
 }
 
 
