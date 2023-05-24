@@ -14,7 +14,7 @@ class ShopFragmentViewModel : ViewModel() {
 
     fun init() {
         productsMutable.value = listOf<Product>(
-            Product.ProductToBuy( "Молоко", ProductCategoryList.productCategoryList[0], 1),
+            Product.ProductToBuy( "Молоко", ProductCategoryList.productCategoryList[0], 1,true),
             Product.ProductToBuy("Beer", ProductCategoryList.productCategoryList[1], 2),
             Product.ProductToBuy( "Milk", ProductCategoryList.productCategoryList[2], 4),
         )

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.frigy_project.R
 import com.example.frigy_project.databinding.ItemShopBinding
 import com.example.frigy_project.filters.TitleFilter
 import com.example.frigy_project.dtos.Product
@@ -37,6 +38,9 @@ class ShopAdapter : BaseAdapter<Product>() {
             countFood.text = food.countToBuy.toString()
             iconFoodCategory.setImageResource(food.productCategory.iconCategory)
             unit.text = food.productCategory.unit
+            if(food.isBuy)
+                checkBuy.setImageResource(R.drawable.check_64)
+
 
         }
 

@@ -35,7 +35,7 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
     }
 
 
-    private fun clickSubmitBtn()
+    private fun clickSubmitBtn() // todo сделать проверку пустой ли
     {
         val product : ProductCreate = ProductCreate(
             name = binding.editName.text.toString(),
@@ -43,8 +43,7 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
             isImportant = binding.checkboxImportantProduct.isChecked,
             maxCount = binding.maxCount.text.toString().toIntOrNull()
         )
-        mListener?.clickOnSubmit(product) // Вызов метода слушателя
-        //viewModel.createProduct(product)
+        mListener?.clickOnSubmit(product)
         dismiss()
     }
 
