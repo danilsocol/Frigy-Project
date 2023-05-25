@@ -9,12 +9,8 @@ import com.example.frigy_project.dtos.Product
 import com.example.frigy_project.dtos.Recipe
 
 class RecipeFragmentViewModel : ViewModel() {
-    private var recipesMutable = MutableLiveData<List<Recipe>?>()
-    val recipes : LiveData<List<Recipe>?>
-        get() = recipesMutable
-
-    fun init() {
-        recipesMutable.value = listOf<Recipe>(
+    private var recipesMutable = MutableLiveData<List<Recipe>?>(
+        listOf<Recipe>(
             Recipe( "Суп с молоком", RecipeCategoryList.recipeCategoryList[0],
                 listOf(
                     Product.DefaultProduct("Молоко", ProductCategoryList.productCategoryList[0], 1),
@@ -35,5 +31,11 @@ class RecipeFragmentViewModel : ViewModel() {
                 )
             ),
         )
+    )
+    val recipes : LiveData<List<Recipe>?>
+        get() = recipesMutable
+
+    fun init() {
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.frigy_project
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -86,4 +87,6 @@ class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
