@@ -33,7 +33,8 @@ sealed class Product (
         override val name: String,
         override val productCategory: ProductCategory,
         val count: Int,
-        val maxCount: Int
+        val maxCount: Int,
+        val isBuy : Boolean = false
     ) : Product(name,productCategory)
 
     companion object Factory {
