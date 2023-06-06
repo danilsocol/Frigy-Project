@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.adapters.FridgeAdapter
 import com.example.frigy_project.databinding.FragmentFridgeBinding
 import com.example.frigy_project.dtos.Product
+import com.example.frigy_project.models.ProductCreate
 import com.example.frigy_project.viewModels.FridgeFragmentViewModel
 
 
-class FridgeFragment : Fragment() {
+class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
 
     private var _binding:  FragmentFridgeBinding? = null
     private val binding get() = _binding!!
@@ -62,9 +63,11 @@ class FridgeFragment : Fragment() {
 
         addItem.setOnMenuItemClickListener {
             val newBottomSheetFragment = CreateProductFragment()
+            newBottomSheetFragment.setListener(this)
             newBottomSheetFragment.show(requireActivity().supportFragmentManager, "CreateProductFragment")
             return@setOnMenuItemClickListener true
         }
+
 
         binding.apply {
             rcViewFridge.layoutManager = LinearLayoutManager(
@@ -73,6 +76,9 @@ class FridgeFragment : Fragment() {
             )
             rcViewFridge.adapter = fridgeAdapter
         }
+    }
+    override fun clickOnSubmit(result: ProductCreate) {
+        viewModel.createProduct(result)
     }
 
 

@@ -10,10 +10,12 @@ import com.example.frigy_project.models.ProductCreate
 
 class FridgeFragmentViewModel : ViewModel() {
 
-    companion object {
+    /*companion object {
         private var productsMutable = MutableLiveData<List<Product>?>()
+    }*/
+    private val productsMutable : MutableLiveData<List<Product>?> by lazy {
+        MutableLiveData<List<Product>?>()
     }
-
     val products : LiveData<List<Product>?>
         get() = productsMutable
 
