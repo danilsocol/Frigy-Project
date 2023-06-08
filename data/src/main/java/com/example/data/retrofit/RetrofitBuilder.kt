@@ -1,4 +1,4 @@
-package com.example.frigy_project.api
+package com.example.data.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
