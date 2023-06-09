@@ -1,6 +1,5 @@
 package com.example.data.repository
 
-import com.example.data.models.ProductStorageRequestImpl
 import com.example.data.models.RecipeRequestImpl
 import com.example.data.networks.RecipeAPI
 import com.example.data.retrofit.RetrofitBuilder
@@ -12,15 +11,13 @@ class RecipeRepositoryImpl : RecipeRepository { // todo убрать дубли�
 
     private val retrofit = RetrofitBuilder.getClient()
     private val recipeApi = retrofit!!.create(RecipeAPI::class.java)
-    override suspend fun getRecipeById(id: String): RecipeRequestImpl {
+    override suspend fun getRecipeById(id: String): Recipe {
         val recipe = recipeApi.getRecipeById(id)
-        return RecipeRequestImpl(recipe.name,recipe.description,recipe.categoryRecipe,
-            recipe.productList)
+        return Recipe.getRecipe(recipe)
     }
 
-    override suspend fun getAllRecipes(): List<RecipeRequestImpl> {
-        return recipeApi.getAllRecipes().map { recipe -> RecipeRequestImpl(recipe.name,recipe.description,recipe.categoryRecipe,
-            recipe.productList) }
+    override suspend fun getAllRecipes(): List<Recipe> {
+        return Recipe.getAllRecipe(recipeApi.getAllRecipes())
     }
 
     /*override suspend fun createRecipe(recipe: Recipe): Recipe {

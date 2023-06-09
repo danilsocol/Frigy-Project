@@ -3,8 +3,8 @@ package com.example.domain.dto
 import com.example.domain.models.Ingredient
 
 interface RecipeRequest {
-    val name: String
+    val title: String
     val description : String
-    val categoryRecipe: Int
+    val recipeCategory: Int
     val productList : List<Ingredient>
 }

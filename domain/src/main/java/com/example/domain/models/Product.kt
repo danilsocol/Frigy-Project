@@ -56,11 +56,11 @@ sealed class Product (
                 ImportantProductToBuy(res.title,productCategoryList[res.productCategory],res.countToBuy,res.maxCountStorage!!,res.isBuy)
             }
         }
-        fun getAllProductStorage(responses: List<ProductStorageRequest>): List<Product>{
-            return responses.map { getProductStorage(it) }
+        fun getAllProductStorage(res: List<ProductStorageRequest>): List<Product>{
+            return res.map { getProductStorage(it) }
         }
-        fun getAllProductToBuy(responses: List<ProductToBuyRequest>): List<Product>{
-            return responses.map { getProductToBuyStorage(it) }
+        fun getAllProductToBuy(res: List<ProductToBuyRequest>): List<Product>{
+            return res.map { getProductToBuyStorage(it) }
         }
     }
 }

@@ -6,7 +6,7 @@ import com.example.domain.dto.ProductToBuyRequest
 import com.example.domain.models.Product
 
 interface ProductRepository {
-    suspend fun getStorageProductById(id: String): ProductStorageRequest
-    suspend fun getAllStorageProducts(): List<ProductStorageRequest>
-    suspend fun createProduct(product: ProductCreate): ProductStorageRequest
+    suspend fun getStorageProductById(id: String): Product
+    suspend fun getAllStorageProducts(): List<Product>
+    suspend fun createProduct(product: ProductCreate): Product
 }

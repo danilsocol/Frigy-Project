@@ -4,9 +4,9 @@ import com.example.domain.dto.RecipeRequest
 import com.example.domain.models.Ingredient
 
 data class RecipeRequestImpl(
-    override val name: String,
+    override val title: String,
     override val description : String,
-    override val categoryRecipe: Int,
+    override val recipeCategory: Int,
     override val productList : List<Ingredient>
 ): RecipeRequest
 

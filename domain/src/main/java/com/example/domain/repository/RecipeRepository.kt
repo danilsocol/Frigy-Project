@@ -5,9 +5,9 @@ import com.example.domain.models.Recipe
 
 interface RecipeRepository {
 
-    suspend fun getRecipeById(id: String): RecipeRequest
+    suspend fun getRecipeById(id: String): Recipe
 
-    suspend fun getAllRecipes(): List<RecipeRequest>
+    suspend fun getAllRecipes(): List<Recipe>
 
 /*    suspend fun createRecipe(recipe: Recipe): Recipe*/
 }
