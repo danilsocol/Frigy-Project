@@ -83,6 +83,9 @@ class FridgeAdapter() : BaseAdapter<Product>() {
             countFood.setText(food.count.toString())
             iconFoodCategory.setImageResource(food.productCategory.iconCategory)
             unit.text = food.productCategory.unit
+
+            //maxCount.text = food.maxCount.toString() todo
+            unit.text = food.productCategory.unit
         }
     }
 

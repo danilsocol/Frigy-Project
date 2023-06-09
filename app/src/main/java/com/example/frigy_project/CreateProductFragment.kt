@@ -14,7 +14,6 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
 
     private var _binding:  FragmentCreateProductBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : FridgeFragmentViewModel by activityViewModels()
 
     private var mListener: BottomSheetListener? = null
     override fun onCreateView(

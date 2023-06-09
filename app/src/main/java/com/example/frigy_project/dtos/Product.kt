@@ -32,7 +32,7 @@ sealed class Product (
     data class ImportantProductToBuy(
         override val name: String,
         override val productCategory: ProductCategory,
-        val count: Int,
+        val countToBuy: Int,
         val maxCount: Int,
         val isBuy : Boolean = false
     ) : Product(name,productCategory)

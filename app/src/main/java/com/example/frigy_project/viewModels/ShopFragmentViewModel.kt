@@ -20,4 +20,8 @@ class ShopFragmentViewModel : ViewModel() {
 
     fun init() {
     }
+
+    fun updateItem(item: Product){
+        // изменяем данные элемента в списке
+    }
 }
