@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.R
+import com.example.frigy_project.app.App
 import com.example.frigy_project.presentation.adapters.RecipeAdapter
 import com.example.frigy_project.databinding.FragmentRecipeListBinding
 import com.example.frigy_project.presentation.dtos.Recipe
@@ -36,7 +37,8 @@ class RecipesFragment : Fragment() {
     }
 
     private fun init(){
-        viewModel = ViewModelProvider(this)[RecipeFragmentViewModel::class.java]
+        val component = (activity?.application as App).component
+        viewModel = component.viewModelFactory().create(RecipeFragmentViewModel::class.java)
 
         val observer = Observer<List<Recipe>?> { list ->
             recipeAdapter.setData(list)
