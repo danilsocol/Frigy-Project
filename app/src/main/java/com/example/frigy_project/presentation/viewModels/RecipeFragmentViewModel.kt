@@ -3,12 +3,14 @@ package com.example.frigy_project.presentation.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.domain.usecase.GetAllRecipeUseCase
 import com.example.frigy_project.presentation.models.ListСategories.ProductCategoryList
 import com.example.frigy_project.presentation.models.ListСategories.RecipeCategoryList
 import com.example.frigy_project.presentation.dtos.Product
 import com.example.frigy_project.presentation.dtos.Recipe
+import javax.inject.Inject
 
-class RecipeFragmentViewModel : ViewModel() {
+class RecipeFragmentViewModel@Inject constructor(private val getAllRecipes : GetAllRecipeUseCase) : ViewModel() {
     private var recipesMutable = MutableLiveData<List<Recipe>?>(
         listOf<Recipe>(
             Recipe( "Суп с молоком", RecipeCategoryList.recipeCategoryList[0],

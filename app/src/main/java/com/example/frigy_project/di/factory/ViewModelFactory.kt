@@ -1,4 +1,4 @@
-package com.example.frigy_project.presentation.factory
+package com.example.frigy_project.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

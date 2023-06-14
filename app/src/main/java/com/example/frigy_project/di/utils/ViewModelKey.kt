@@ -1,4 +1,4 @@
-package com.example.frigy_project.presentation.utils
+package com.example.frigy_project.di.utils
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
