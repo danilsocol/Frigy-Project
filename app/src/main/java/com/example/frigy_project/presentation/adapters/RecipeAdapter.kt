@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.models.Recipe
 import com.example.frigy_project.databinding.ItemRecipeBinding
 import com.example.frigy_project.presentation.filters.TitleFilter
-import com.example.frigy_project.presentation.dtos.Recipe
+import com.example.frigy_project.presentation.utils.RecipeCategoryList
 
 class RecipeAdapter : BaseAdapter<Recipe>() {
     override fun setData(newList: List<Recipe>) {
@@ -29,8 +30,8 @@ class RecipeAdapter : BaseAdapter<Recipe>() {
 
     class RecipeHolder(private val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(recipe: Recipe) = with(binding) {
-            nameRecipe.text = recipe.name
-            iconFoodCategory.setImageResource(recipe.categoryRecipe.iconCategory)
+            nameRecipe.text = recipe.title
+            iconFoodCategory.setImageResource(RecipeCategoryList.getRecipeImgCategory(recipe.recipeCategory) )
 
         }
     }

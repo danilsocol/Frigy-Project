@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.models.Product
 import com.example.frigy_project.R
 import com.example.frigy_project.databinding.ItemImportantProductBinding
 import com.example.frigy_project.databinding.ItemProductBinding
 import com.example.frigy_project.presentation.filters.TitleFilter
-import com.example.frigy_project.presentation.dtos.Product
+import com.example.frigy_project.presentation.utils.ProductCategoryList
 
 class FridgeAdapter() : BaseAdapter<Product>() {
 
@@ -67,25 +68,25 @@ class FridgeAdapter() : BaseAdapter<Product>() {
 
     class ProductHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: Product.DefaultProduct) = with(binding) {
+        fun bind(product: Product.DefaultProduct) = with(binding) {
 
-            nameFood.text = food.name
-            countFood.setText(food.count.toString())
-            iconFoodCategory.setImageResource(food.productCategory.iconCategory)
-            unit.text = food.productCategory.unit
+            nameFood.text = product.title
+            countFood.setText(product.countStorage.toString())
+            iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
+            unit.text = product.productCategory.unit
         }
     }
 
     class ImportantProductHolder(private val binding: ItemImportantProductBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: Product.ImportantProduct) = with(binding) {
+        fun bind(product: Product.ImportantProduct) = with(binding) {
 
-            nameFood.text = food.name
-            countFood.setText(food.count.toString())
-            iconFoodCategory.setImageResource(food.productCategory.iconCategory)
-            unit.text = food.productCategory.unit
+            nameFood.text = product.title
+            countFood.setText(product.countStorage.toString())
+            iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
+            unit.text = product.productCategory.unit
 
             //maxCount.text = food.maxCount.toString() todo
-            unit.text = food.productCategory.unit
+            unit.text = product.productCategory.unit
         }
     }
 

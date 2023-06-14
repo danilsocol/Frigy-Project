@@ -2,13 +2,14 @@ package com.example.frigy_project.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.models.Product
 import com.example.frigy_project.R
 import com.example.frigy_project.databinding.ItemImportantShopBinding
 import com.example.frigy_project.databinding.ItemShopBinding
 import com.example.frigy_project.presentation.filters.TitleFilter
-import com.example.frigy_project.presentation.dtos.Product
+import com.example.frigy_project.presentation.utils.ProductCategoryList
+import android.widget.Filter as Filter1
 
 class ShopAdapter : BaseAdapter<Product>() {
 
@@ -59,33 +60,33 @@ class ShopAdapter : BaseAdapter<Product>() {
         submitList(originalList)
     }
 
-    override fun getFilter(): Filter {
+    override fun getFilter(): Filter1 {
         return TitleFilter(originalList!!.toList(), this)
     }
 
     class ProductToBuyHolder(private val binding: ItemShopBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: Product.ProductToBuy) = with(binding) {
+        fun bind(product: Product.ProductToBuy) = with(binding) {
 
-            nameFood.text = food.name
-            countFood.text = food.countToBuy.toString()
-            iconFoodCategory.setImageResource(food.productCategory.iconCategory)
-            unit.text = food.productCategory.unit
-            if(food.isBuy)
+            nameFood.text = product.title
+            countFood.text = product.countToBuy.toString()
+            iconFoodCategory.setImageResource( ProductCategoryList.getProductImgCategory(product.productCategory))
+            unit.text = product.productCategory.unit
+            if(product.isBuy)
                 checkBuy.setImageResource(R.drawable.check_64)
         }
     }
 
     class ImportantProductToBuyHolder(private val binding: ItemImportantShopBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: Product.ImportantProductToBuy) = with(binding) {
-            nameFood.text = food.name
-            countFood.text = food.countToBuy.toString()
-            iconFoodCategory.setImageResource(food.productCategory.iconCategory)
-            unit.text = food.productCategory.unit
-            if(food.isBuy)
+        fun bind(product: Product.ImportantProductToBuy) = with(binding) {
+            nameFood.text = product.title
+            countFood.text = product.countToBuy.toString()
+            iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
+            unit.text = product.productCategory.unit
+            if(product.isBuy)
                 checkBuy.setImageResource(R.drawable.check_64)
 
-            maxCount.text = food.maxCount.toString()
-            unit.text = food.productCategory.unit
+            maxCount.text = product.maxCountStorage.toString()
+            unit.text = product.productCategory.unit
         }
     }
 

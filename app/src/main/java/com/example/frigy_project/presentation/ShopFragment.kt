@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.models.Product
 import com.example.frigy_project.R
 import com.example.frigy_project.presentation.adapters.ShopAdapter
 import com.example.frigy_project.databinding.FragmentShopListBinding
-import com.example.frigy_project.presentation.dtos.Product
 import com.example.frigy_project.presentation.viewModels.ShopFragmentViewModel
 
 class ShopFragment : Fragment() {

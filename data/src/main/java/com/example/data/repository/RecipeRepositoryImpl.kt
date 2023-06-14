@@ -16,7 +16,7 @@ class RecipeRepositoryImpl @Inject constructor(private val recipeApi : RecipeAPI
         return Recipe.getRecipe(recipe)
     }
 
-    override suspend fun getAllRecipes(): List<Recipe> {
+    override fun getAllRecipes(): List<Recipe> {
         return Recipe.getAllRecipe(recipeApi.getAllRecipes())
     }
 

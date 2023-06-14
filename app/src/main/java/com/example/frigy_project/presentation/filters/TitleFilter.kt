@@ -2,7 +2,7 @@ package com.example.frigy_project.presentation.filters
 
 import android.widget.Filter
 import com.example.frigy_project.presentation.adapters.BaseAdapter
-import com.example.frigy_project.presentation.dtos.IFilterable
+import com.example.domain.models.IFilterable
 import java.util.Locale
 
 class TitleFilter<T>(private val list: List<T>, private val adapter: BaseAdapter<T>) : Filter()
@@ -18,7 +18,7 @@ class TitleFilter<T>(private val list: List<T>, private val adapter: BaseAdapter
         }
         else {
             list.filter { foodModel ->
-                foodModel.name.lowercase(Locale.ROOT)
+                foodModel.title.lowercase(Locale.ROOT)
                     .contains(constraint.toString().lowercase(Locale.ROOT).trim())
             }
         }

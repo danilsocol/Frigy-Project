@@ -10,11 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.models.Recipe
 import com.example.frigy_project.R
 import com.example.frigy_project.app.App
 import com.example.frigy_project.presentation.adapters.RecipeAdapter
 import com.example.frigy_project.databinding.FragmentRecipeListBinding
-import com.example.frigy_project.presentation.dtos.Recipe
 import com.example.frigy_project.presentation.viewModels.RecipeFragmentViewModel
 
 class RecipesFragment : Fragment() {

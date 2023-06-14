@@ -4,8 +4,8 @@ import com.example.domain.dto.ProductStorageRequest
 import com.example.domain.dto.ProductToBuyRequest
 
 sealed class Product (
-    open val title: String,
-    open val productCategory: ProductCategory){
+    override val title: String,
+    open val productCategory: ProductCategory) : IFilterable {
 
     data class DefaultProduct(
         override val title: String,

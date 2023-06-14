@@ -12,7 +12,7 @@ interface RecipeAPI {
     suspend fun getRecipeById(@Path("id") id : String) : RecipeRequestImpl //todo id string
 
     @GET("recipes")
-    suspend fun getAllRecipes() : List<RecipeRequestImpl>
+    fun getAllRecipes() : List<RecipeRequestImpl>
 
   /*  @POST("recipes")
     suspend fun createRecipe(@Body recipe: RecipeRequestImpl) : RecipeRequestImpl*/

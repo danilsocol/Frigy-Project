@@ -3,11 +3,11 @@ package com.example.domain.models
 import com.example.domain.dto.RecipeRequest
 
 data class Recipe(
-    val title: String,
+    override val title: String,
     val description : String,
     val recipeCategory: RecipeCategory,
     val productList : List<Ingredient>
-){
+) : IFilterable {
     companion object Factory {
         val recipeCategoryList  =  listOf(
             (RecipeCategory(1, "Салат")),

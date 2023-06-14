@@ -5,7 +5,7 @@ import com.example.domain.repository.RecipeRepository
 import javax.inject.Inject
 
 class GetAllRecipeUseCase @Inject constructor(private val recipeRepository: RecipeRepository){
-    suspend fun execute() : List<Recipe>{
+    fun execute() : List<Recipe>{
         return recipeRepository.getAllRecipes()
     }
 }

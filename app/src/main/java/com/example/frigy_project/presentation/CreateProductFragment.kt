@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.frigy_project.databinding.FragmentCreateProductBinding
-import com.example.frigy_project.presentation.models.ProductCreate
+import com.example.frigy_project.presentation.dtos.ProductCreate
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class CreateProductFragment  : BottomSheetDialogFragment(){

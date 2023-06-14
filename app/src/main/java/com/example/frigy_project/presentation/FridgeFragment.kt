@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frigy_project.R
 import com.example.frigy_project.presentation.adapters.FridgeAdapter
 import com.example.frigy_project.databinding.FragmentFridgeBinding
-import com.example.frigy_project.presentation.dtos.Product
-import com.example.frigy_project.presentation.models.ProductCreate
+import com.example.frigy_project.presentation.dtos.ProductCreate
 import com.example.frigy_project.presentation.viewModels.FridgeFragmentViewModel
 
 
@@ -40,10 +39,10 @@ class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
     private fun init() {
         viewModel = ViewModelProvider(this)[FridgeFragmentViewModel::class.java]
 
-        val observer = Observer<List<Product>?> { list ->
+       /* val observer = Observer<List<Product>?> { list ->
             fridgeAdapter.setData(list)
         }
-        viewModel.products.observe(viewLifecycleOwner, observer)
+        viewModel.products.observe(viewLifecycleOwner, observer)*/
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val addItem = binding.toolbar.menu.findItem(R.id.add)
@@ -79,7 +78,7 @@ class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
         }
     }
     override fun clickOnSubmit(result: ProductCreate) {
-        viewModel.createProduct(result)
+       // viewModel.createProduct(result)
     }
 
 

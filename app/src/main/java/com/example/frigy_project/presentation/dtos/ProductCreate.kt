@@ -1,4 +1,4 @@
-package com.example.frigy_project.presentation.models
+package com.example.frigy_project.presentation.dtos
 
 
 data class ProductCreate(
