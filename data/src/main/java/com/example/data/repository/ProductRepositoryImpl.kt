@@ -7,12 +7,10 @@ import com.example.data.retrofit.RetrofitBuilder
 import com.example.domain.dto.ProductCreate
 import com.example.domain.models.Product
 import com.example.domain.repository.ProductRepository
+import javax.inject.Inject
 
 
-class ProductRepositoryImpl : ProductRepository { // todo выделить отдельный класс, а репозиторий оставить общим (а может и нет)
-
-    private val retrofit = RetrofitBuilder.getClient()
-    private val productApi = retrofit!!.create(ProductAPI::class.java)
+class ProductRepositoryImpl @Inject constructor(private val productApi : ProductAPI) : ProductRepository { // todo выделить отдельный класс, а репозиторий оставить общим (а может и нет)
 
     override suspend fun getStorageProductById(id: String): Product {
         val product = productApi.getProductById(id)

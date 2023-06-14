@@ -1,16 +1,16 @@
 package com.example.data.repository
 
 import com.example.data.models.RecipeRequestImpl
+import com.example.data.networks.ProductAPI
 import com.example.data.networks.RecipeAPI
 import com.example.data.retrofit.RetrofitBuilder
 import com.example.domain.models.Recipe
 import com.example.domain.repository.RecipeRepository
+import javax.inject.Inject
 
 
-class RecipeRepositoryImpl : RecipeRepository { // todo убрать дублирование кода
+class RecipeRepositoryImpl @Inject constructor(private val recipeApi : RecipeAPI) : RecipeRepository { // todo убрать дублирование кода
 
-    private val retrofit = RetrofitBuilder.getClient()
-    private val recipeApi = retrofit!!.create(RecipeAPI::class.java)
     override suspend fun getRecipeById(id: String): Recipe {
         val recipe = recipeApi.getRecipeById(id)
         return Recipe.getRecipe(recipe)
