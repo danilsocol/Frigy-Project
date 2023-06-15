@@ -7,16 +7,14 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.dto.ProductCreate
 import com.example.domain.models.Product
 import com.example.frigy_project.R
 import com.example.frigy_project.app.App
 import com.example.frigy_project.presentation.adapters.FridgeAdapter
 import com.example.frigy_project.databinding.FragmentFridgeBinding
-import com.example.frigy_project.presentation.dtos.ProductCreate
 import com.example.frigy_project.presentation.viewModels.FridgeFragmentViewModel
-import com.example.frigy_project.presentation.viewModels.RecipeFragmentViewModel
 
 
 class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
@@ -82,7 +80,7 @@ class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
         }
     }
     override fun clickOnSubmit(result: ProductCreate) {
-       // viewModel.createProduct(result)
+        viewModel.createProduct(result)
     }
 
 

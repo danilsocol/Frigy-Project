@@ -1,6 +1,5 @@
 package com.example.domain.repository
 
-import com.example.domain.dto.ProductCreate
 import com.example.domain.dto.ProductRequest
 import com.example.domain.models.Product
 

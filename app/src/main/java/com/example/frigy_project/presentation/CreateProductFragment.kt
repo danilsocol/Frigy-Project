@@ -4,16 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import com.example.domain.dto.ProductCreate
+import com.example.domain.dto.ProductRequest
+import com.example.frigy_project.R
 import com.example.frigy_project.databinding.FragmentCreateProductBinding
-import com.example.frigy_project.presentation.dtos.ProductCreate
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import java.util.Dictionary
 
 class CreateProductFragment  : BottomSheetDialogFragment(){
 
     private var _binding:  FragmentCreateProductBinding? = null
     private val binding get() = _binding!!
-
     private var mListener: BottomSheetListener? = null
+
+    val images = arrayOf(
+        R.drawable.product_category_liquid_64,
+        R.drawable.product_category_piece_64,
+        R.drawable.product_category_weighing_64
+    )
+
+    var categoryMap = mapOf<String,Int>(
+        "Жидкость" to 0,
+        "Взвешиваемый" to 1,
+        "Поштучный" to  2)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,15 +45,27 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
         binding.closeBtn.setOnClickListener{dismiss()}
         binding.submitBtn.setOnClickListener { clickSubmitBtn() }
         binding.checkboxImportantProduct.setOnClickListener { ClickCheckboxImportantProduct() }
-    }
 
+        binding.categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                binding.iconFoodCategory.setImageResource(images[position])
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                binding.iconFoodCategory.setImageResource(images[0])
+            }
+        }
+    }
 
     private fun clickSubmitBtn() // todo сделать проверку пустой ли
     {
+        val category = categoryMap[binding.categorySpinner.selectedItem.toString()]
+
         val product : ProductCreate = ProductCreate(
-            name = binding.editName.text.toString(),
-            productCategory = binding.categorySpinner.selectedItem.toString(),
+            title = binding.editName.text.toString(),
+            productCategory = category!!,
             isImportant = binding.checkboxImportantProduct.isChecked,
+            count = 0,
             maxCount = binding.maxCount.text.toString().toIntOrNull()
         )
         mListener?.clickOnSubmit(product)

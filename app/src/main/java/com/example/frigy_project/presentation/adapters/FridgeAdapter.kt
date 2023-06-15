@@ -46,8 +46,8 @@ class FridgeAdapter() : BaseAdapter<Product>() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             when (holder.itemViewType) {
                 R.layout.item_product -> (holder as ProductHolder).bind(
-                    getItem(position) as Product.DefaultProduct
-                )
+                    getItem(position) as Product.DefaultProduct)
+
 
                 R.layout.item_important_product -> (holder as ImportantProductHolder).bind(
                     getItem(position) as Product.ImportantProduct
@@ -79,13 +79,12 @@ class FridgeAdapter() : BaseAdapter<Product>() {
 
     class ImportantProductHolder(private val binding: ItemImportantProductBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product.ImportantProduct) = with(binding) {
-
             nameFood.text = product.title
             countFood.setText(product.count.toString())
             iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
             unit.text = product.productCategory.unit
 
-            //maxCount.text = food.maxCount.toString() todo
+            maxCount.text = product.maxCount.toString()
             unit.text = product.productCategory.unit
         }
     }
