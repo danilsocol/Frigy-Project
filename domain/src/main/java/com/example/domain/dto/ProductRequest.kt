@@ -1,9 +1,9 @@
 package com.example.domain.dto
 
-interface ProductStorageRequest{
+interface ProductRequest{
     val title: String
     val productCategory: Int
     val isImportant : Boolean
-    val countStorage: Int
-    val maxCountStorage: Int?
+    val count: Int
+    val maxCount: Int?
 }

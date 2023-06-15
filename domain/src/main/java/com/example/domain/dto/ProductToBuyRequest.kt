@@ -4,7 +4,7 @@ interface ProductToBuyRequest {
     val title: String
     val productCategory: Int
     val isImportant : Boolean
-    val countToBuy: Int
-    val maxCountStorage: Int?
+    val count: Int
+    val maxCount: Int?
     val isBuy: Boolean
 }

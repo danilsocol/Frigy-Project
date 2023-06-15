@@ -6,7 +6,7 @@ data class Recipe(
     override val title: String,
     val description : String,
     val recipeCategory: RecipeCategory,
-    val productList : List<Ingredient>
+    val productList : List<Product>
 ) : IFilterable {
     companion object Factory {
         val recipeCategoryList  =  listOf(
@@ -15,7 +15,9 @@ data class Recipe(
             (RecipeCategory(3, "Суп"))
         )
         fun getRecipe(res: RecipeRequest): Recipe{
-            return Recipe(res.title,res.description, recipeCategoryList[res.recipeCategory],res.productList)
+
+            return Recipe(res.title,res.description, recipeCategoryList[res.recipeCategory],
+                res.productList.map { product -> Product.getProduct(product) })
         }
 
         fun getAllRecipe(res: List<RecipeRequest>): List<Recipe>{

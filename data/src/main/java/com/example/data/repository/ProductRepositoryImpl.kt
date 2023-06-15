@@ -1,9 +1,7 @@
 package com.example.data.repository
 
-import com.example.data.models.ProductStorageRequestImpl
-import com.example.data.models.ProductToBuyRequestImpl
+import com.example.data.models.ProductRequestImpl
 import com.example.data.networks.ProductAPI
-import com.example.data.retrofit.RetrofitBuilder
 import com.example.domain.dto.ProductCreate
 import com.example.domain.models.Product
 import com.example.domain.repository.ProductRepository
@@ -14,7 +12,7 @@ class ProductRepositoryImpl @Inject constructor(private val productApi : Product
 
     override suspend fun getStorageProductById(id: String): Product {
         val product = productApi.getProductById(id)
-        return Product.getProductStorage(product)
+        return Product.getProduct(product)
     }
 
     override suspend fun getAllStorageProducts(): List<Product> {
@@ -22,8 +20,8 @@ class ProductRepositoryImpl @Inject constructor(private val productApi : Product
     }
 
     override suspend fun createProduct(product: ProductCreate): Product {
-        val mapProduct = ProductStorageRequestImpl(product.title,product.productCategory,product.isImportant,product.countStorage,product.maxCountStorage) //todo правильно ли мапить из 1 потом обратно?
+        val mapProduct = ProductRequestImpl(product.title,product.productCategory,product.isImportant,product.countStorage,product.maxCountStorage) //todo правильно ли мапить из 1 потом обратно?
         val result = productApi.createProduct(mapProduct)
-        return Product.getProductStorage(result)
+        return Product.getProduct(result)
     }
 }

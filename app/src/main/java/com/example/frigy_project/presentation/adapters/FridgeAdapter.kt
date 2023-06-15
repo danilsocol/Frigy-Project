@@ -71,7 +71,7 @@ class FridgeAdapter() : BaseAdapter<Product>() {
         fun bind(product: Product.DefaultProduct) = with(binding) {
 
             nameFood.text = product.title
-            countFood.setText(product.countStorage.toString())
+            countFood.setText(product.count.toString())
             iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
             unit.text = product.productCategory.unit
         }
@@ -81,7 +81,7 @@ class FridgeAdapter() : BaseAdapter<Product>() {
         fun bind(product: Product.ImportantProduct) = with(binding) {
 
             nameFood.text = product.title
-            countFood.setText(product.countStorage.toString())
+            countFood.setText(product.count.toString())
             iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
             unit.text = product.productCategory.unit
 

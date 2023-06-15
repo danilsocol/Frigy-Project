@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.models.Product
 import com.example.frigy_project.R
+import com.example.frigy_project.app.App
 import com.example.frigy_project.presentation.adapters.FridgeAdapter
 import com.example.frigy_project.databinding.FragmentFridgeBinding
 import com.example.frigy_project.presentation.dtos.ProductCreate
 import com.example.frigy_project.presentation.viewModels.FridgeFragmentViewModel
+import com.example.frigy_project.presentation.viewModels.RecipeFragmentViewModel
 
 
 class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
@@ -37,12 +40,13 @@ class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
     }
 
     private fun init() {
-        viewModel = ViewModelProvider(this)[FridgeFragmentViewModel::class.java]
+        val component = (activity?.application as App).component
+        viewModel = component.viewModelFactory().create(FridgeFragmentViewModel::class.java)
 
-       /* val observer = Observer<List<Product>?> { list ->
+        val observer = Observer<List<Product>?> { list ->
             fridgeAdapter.setData(list)
         }
-        viewModel.products.observe(viewLifecycleOwner, observer)*/
+        viewModel.products.observe(viewLifecycleOwner, observer)
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val addItem = binding.toolbar.menu.findItem(R.id.add)

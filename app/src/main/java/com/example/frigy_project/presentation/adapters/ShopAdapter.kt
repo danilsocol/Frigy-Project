@@ -68,7 +68,7 @@ class ShopAdapter : BaseAdapter<Product>() {
         fun bind(product: Product.ProductToBuy) = with(binding) {
 
             nameFood.text = product.title
-            countFood.text = product.countToBuy.toString()
+            countFood.text = product.count.toString()
             iconFoodCategory.setImageResource( ProductCategoryList.getProductImgCategory(product.productCategory))
             unit.text = product.productCategory.unit
             if(product.isBuy)
@@ -79,13 +79,13 @@ class ShopAdapter : BaseAdapter<Product>() {
     class ImportantProductToBuyHolder(private val binding: ItemImportantShopBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product.ImportantProductToBuy) = with(binding) {
             nameFood.text = product.title
-            countFood.text = product.countToBuy.toString()
+            countFood.text = product.count.toString()
             iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
             unit.text = product.productCategory.unit
             if(product.isBuy)
                 checkBuy.setImageResource(R.drawable.check_64)
 
-            maxCount.text = product.maxCountStorage.toString()
+            maxCount.text = product.maxCount.toString()
             unit.text = product.productCategory.unit
         }
     }

@@ -1,9 +1,8 @@
 package com.example.data.repository
 
+import com.example.data.models.ProductRequestImpl
 import com.example.data.models.RecipeRequestImpl
-import com.example.data.networks.ProductAPI
 import com.example.data.networks.RecipeAPI
-import com.example.data.retrofit.RetrofitBuilder
 import com.example.domain.models.Recipe
 import com.example.domain.repository.RecipeRepository
 import javax.inject.Inject
@@ -17,6 +16,17 @@ class RecipeRepositoryImpl @Inject constructor(private val recipeApi : RecipeAPI
     }
 
     override fun getAllRecipes(): List<Recipe> {
+        /*return Recipe.getAllRecipe(
+            listOf<RecipeRequestImpl>(
+                RecipeRequestImpl( "Суп с молоком", "Супчик",1,
+                    listOf(
+                        ProductRequestImpl("Молоко",1,false,1,null),
+                        ProductRequestImpl("Вода",1,false,1,null),
+                    )
+                )
+            )
+
+        )*/
         return Recipe.getAllRecipe(recipeApi.getAllRecipes())
     }
 

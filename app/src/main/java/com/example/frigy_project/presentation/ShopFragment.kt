@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.models.Product
 import com.example.frigy_project.R
+import com.example.frigy_project.app.App
 import com.example.frigy_project.presentation.adapters.ShopAdapter
 import com.example.frigy_project.databinding.FragmentShopListBinding
+import com.example.frigy_project.presentation.viewModels.RecipeFragmentViewModel
 import com.example.frigy_project.presentation.viewModels.ShopFragmentViewModel
 
 class ShopFragment : Fragment() {
@@ -35,7 +37,8 @@ class ShopFragment : Fragment() {
     }
 
     private fun init() {
-        viewModel = ViewModelProvider(this)[ShopFragmentViewModel::class.java]
+        val component = (activity?.application as App).component
+        viewModel = component.viewModelFactory().create(ShopFragmentViewModel::class.java)
 
         val observer = Observer<List<Product>?> { list ->
             shopAdapter.setData(list)
