@@ -1,6 +1,7 @@
 package com.example.frigy_project.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,7 @@ class ShopFragment : Fragment() {
     private var _binding:  FragmentShopListBinding? = null
     private val binding get() = _binding!!
 
-    private val shopAdapter = ShopAdapter()
+    private lateinit var shopAdapter : ShopAdapter //todo убрать viewModel беренести в dagger
     private lateinit var viewModel : ShopFragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +40,7 @@ class ShopFragment : Fragment() {
     private fun init() {
         val component = (activity?.application as App).component
         viewModel = component.viewModelFactory().create(ShopFragmentViewModel::class.java)
+        shopAdapter = ShopAdapter(viewModel)
 
         val observer = Observer<List<Product>?> { list ->
             shopAdapter.setData(list)
@@ -70,7 +72,6 @@ class ShopFragment : Fragment() {
             rcViewFoodToBuy.adapter = shopAdapter
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

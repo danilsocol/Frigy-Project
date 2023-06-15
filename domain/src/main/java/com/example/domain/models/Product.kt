@@ -26,7 +26,7 @@ sealed class Product (
         override val title: String,
         override val productCategory: ProductCategory,
         override val count: Int,
-        val isBuy: Boolean = false
+        var isBuy: Boolean = false
     ) : Product(title, productCategory,count)
 
     data class ImportantProductToBuy(
@@ -34,7 +34,7 @@ sealed class Product (
         override val productCategory: ProductCategory,
         override val count: Int,
         val maxCount: Int,
-        val isBuy: Boolean = false
+        var isBuy: Boolean = false
     ) : Product(title, productCategory,count)
 
     companion object Factory {

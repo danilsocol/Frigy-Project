@@ -1,5 +1,6 @@
 package com.example.frigy_project.presentation.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,9 +10,11 @@ import com.example.frigy_project.databinding.ItemImportantShopBinding
 import com.example.frigy_project.databinding.ItemShopBinding
 import com.example.frigy_project.presentation.filters.TitleFilter
 import com.example.frigy_project.presentation.utils.ProductCategoryList
+import com.example.frigy_project.presentation.viewModels.ShopFragmentViewModel
+import javax.inject.Inject
 import android.widget.Filter as Filter1
 
-class ShopAdapter : BaseAdapter<Product>() {
+class ShopAdapter@Inject constructor(private val shopFragmentViewModel: ShopFragmentViewModel) : BaseAdapter<Product>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -20,14 +23,33 @@ class ShopAdapter : BaseAdapter<Product>() {
                 val binding = ItemShopBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false)
-                ProductToBuyHolder(binding)
+                val holder = ProductToBuyHolder(binding)
+                binding.root.setOnClickListener {
+                    val position = holder.adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val product = (currentList[position] as Product.ProductToBuy)
+                        product.isBuy = !product.isBuy
+                       // (currentList[position] as Product.ProductToBuy).isBuy = !product.isBuy
+                        shopFragmentViewModel.updateSelectedItem(position,currentList[position])
+                    }
+                }
+                holder
             }
-
             R.layout.item_important_shop -> {
                 val binding = ItemImportantShopBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false)
-                ImportantProductToBuyHolder(binding)
+                val holder = ImportantProductToBuyHolder(binding)
+                binding.root.setOnClickListener {
+                    val position = holder.adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val product = (currentList[position] as Product.ImportantProductToBuy)
+                        product.isBuy = !product.isBuy
+                     //   (currentList[position] as Product.ImportantProductToBuy).isBuy = !product.isBuy
+                        shopFragmentViewModel.updateSelectedItem(position,product)
+                    }
+                }
+                holder
             }
             else -> throw IllegalStateException("Неизвестный тип $viewType")
         }
@@ -58,6 +80,7 @@ class ShopAdapter : BaseAdapter<Product>() {
     override fun setData(newList: List<Product>) {
         originalList = newList
         submitList(originalList)
+        notifyDataSetChanged()
     }
 
     override fun getFilter(): Filter1 {
@@ -73,6 +96,8 @@ class ShopAdapter : BaseAdapter<Product>() {
             unit.text = product.productCategory.unit
             if(product.isBuy)
                 checkBuy.setImageResource(R.drawable.check_64)
+            else
+                checkBuy.setImageResource(0)
         }
     }
 
@@ -84,7 +109,8 @@ class ShopAdapter : BaseAdapter<Product>() {
             unit.text = product.productCategory.unit
             if(product.isBuy)
                 checkBuy.setImageResource(R.drawable.check_64)
-
+            else
+                checkBuy.setImageResource(0)
             maxCount.text = product.maxCount.toString()
             unit.text = product.productCategory.unit
         }
