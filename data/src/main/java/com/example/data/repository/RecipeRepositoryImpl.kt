@@ -15,7 +15,7 @@ class RecipeRepositoryImpl @Inject constructor(private val recipeApi : RecipeAPI
         return Recipe.getRecipe(recipe)
     }
 
-    override fun getAllRecipes(): List<Recipe> {
+    override suspend fun getAllRecipes(): List<Recipe> {
         /*return Recipe.getAllRecipe(
             listOf<RecipeRequestImpl>(
                 RecipeRequestImpl( "Суп с молоком", "Супчик",1,
@@ -30,8 +30,8 @@ class RecipeRepositoryImpl @Inject constructor(private val recipeApi : RecipeAPI
         return Recipe.getAllRecipe(recipeApi.getAllRecipes())
     }
 
-    /*override suspend fun createRecipe(recipe: Recipe): Recipe {
-        val mapRecipe = RecipeRequest(recipe.name,recipe.description,recipe.categoryRecipe,
+   /* override suspend fun createRecipe(recipe: Recipe): Recipe {
+        val mapRecipe = RecipeRequest(recipe.title,recipe.description,recipe.categoryRecipe,
             recipe.productList.map { product -> ProductStorageRequestImpl(product.title,product.productCategory,
                 product.isImportant,product.count,product.maxCount) })
         val result = recipeApi.createRecipe(mapRecipe)

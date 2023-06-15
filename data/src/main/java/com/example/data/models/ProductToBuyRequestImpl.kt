@@ -10,3 +10,6 @@ data class ProductToBuyRequestImpl(
     override val maxCount: Int?,
     override val isBuy: Boolean
 ) : ProductToBuyRequest
+{
+
+}

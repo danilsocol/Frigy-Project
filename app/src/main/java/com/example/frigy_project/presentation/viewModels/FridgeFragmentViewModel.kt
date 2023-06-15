@@ -3,10 +3,14 @@ package com.example.frigy_project.presentation.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.domain.dto.ProductRequest
 import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
+import com.example.domain.usecase.CreateProductUseCase
 import com.example.domain.usecase.GetAllRecipeUseCase
 import com.example.frigy_project.presentation.dtos.ProductCreate
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FridgeFragmentViewModel@Inject constructor() : ViewModel() {
@@ -25,10 +29,13 @@ class FridgeFragmentViewModel@Inject constructor() : ViewModel() {
 
     }
 
-/* fun createProduct(data : ProductCreate){
-        val product = Product.createProduct(data)
-        productsMutable.value = productsMutable.value!!.plus(product)
-    }*/
+     fun createProduct(data : ProductRequest){
+         productsMutable.value = productsMutable.value!!.plus(Product.getProduct(data)) // todo тестовое
+
+         /*viewModelScope.launch {
+            createProductUseCase.execute(data)
+            }*/
+        }
 
 
 }
