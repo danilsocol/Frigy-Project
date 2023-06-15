@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:paddingBottom="32dp"
+    >
+
+    <ImageButton
+        android:id="@+id/close_btn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/transparent"
+        android:src="@drawable/close_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:layout_constraintTop_toBottomOf="@+id/close_btn"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/icon_food_category"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toTopOf="@+id/barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/product_category_liquid_64"
+        />
+
+    <TextView
+        android:id="@+id/edit_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="24dp"
+        android:layout_marginStart="8dp"
+        android:hint="Название"
+        app:layout_constraintStart_toEndOf="@+id/icon_food_category"
+        app:layout_constraintTop_toBottomOf="@+id/category_spinner"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_food_category"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/category_spinner"
+        android:entries="@array/product_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/icon_food_category"
+        app:layout_constraintTop_toTopOf="@+id/icon_food_category"
+        />
+
+    <TextView
+        android:id="@+id/text_for_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:text="Сколько вы хотите купить"
+        app:layout_constraintTop_toBottomOf="@+id/icon_food_category"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/buy_count"
+        android:layout_width="57dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="00000"
+        android:textSize="18dp"
+        app:layout_constraintTop_toTopOf="@+id/text_for_buy"
+        app:layout_constraintBottom_toBottomOf="@+id/text_for_buy"
+        app:layout_constraintStart_toEndOf="@+id/text_for_buy"
+        />
+
+    <TextView
+        android:id="@+id/buy_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="литров"
+        android:textSize="18dp"
+        app:layout_constraintTop_toTopOf="@+id/buy_count"
+        app:layout_constraintBottom_toBottomOf="@+id/buy_count"
+        app:layout_constraintStart_toEndOf="@+id/buy_count"
+        />
+
+
+    <TextView
+        android:id="@+id/text_important_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:text="В холодильнике хранится"
+        app:layout_constraintTop_toBottomOf="@+id/text_for_buy"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/count_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
+        android:textSize="18dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@+id/text_important_product"
+        app:layout_constraintBottom_toBottomOf="@+id/text_important_product"
+        app:layout_constraintStart_toEndOf="@+id/text_important_product"
+        />
+
+    <TextView
+        android:id="@+id/unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="18dp"
+        android:text="литров"
+        app:layout_constraintTop_toTopOf="@+id/count_food"
+        app:layout_constraintBottom_toBottomOf="@+id/count_food"
+        app:layout_constraintStart_toEndOf="@+id/count_food"
+        />
+
+
+
+
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Добавить"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
