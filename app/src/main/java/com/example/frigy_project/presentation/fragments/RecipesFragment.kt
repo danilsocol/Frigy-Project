@@ -65,7 +65,7 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
         addItem.setOnMenuItemClickListener {
             val newBottomSheetFragment = CreateRecipeFragment()
             newBottomSheetFragment.setListener(this)
-            newBottomSheetFragment.show(requireActivity().supportFragmentManager, "CreateProductFragment")
+            newBottomSheetFragment.show(requireActivity().supportFragmentManager, "CreateRecipeFragment")
             return@setOnMenuItemClickListener true
         }
 
