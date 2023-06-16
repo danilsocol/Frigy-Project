@@ -5,7 +5,7 @@ import com.example.domain.models.Product
 
 data class ProductRequestImpl (
     override var title: String,
-    override var productCategory: Int,
+    override var productCategoryInt: Int,
     override var isImportant : Boolean,
     override var count: Int,
     override var maxCount: Int?,

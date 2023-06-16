@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.dto.ProductCreate
+import com.example.domain.dto.ProductToBuyCreate
 import com.example.domain.models.Product
 import com.example.frigy_project.R
 import com.example.frigy_project.app.App
@@ -59,8 +60,14 @@ class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBotto
                 shopAdapter.filter.filter(newText)
                 return true
             }
+        })
+
+        addItem.setOnMenuItemClickListener {
+            val newBottomSheetFragment = AddProductToBuyFragment()
+            newBottomSheetFragment.setListener(this)
+            newBottomSheetFragment.show(requireActivity().supportFragmentManager, "AddProductToBuyFragment")
+            return@setOnMenuItemClickListener true
         }
-        )
 
         binding.apply {
             rcViewFoodToBuy.layoutManager = LinearLayoutManager(
@@ -75,7 +82,7 @@ class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBotto
         _binding = null
     }
 
-    override fun clickOnSubmit(result: ProductCreate) {
-        //viewModel.createProduct(result)
+    override fun clickOnSubmit(result: ProductToBuyCreate) {
+        viewModel.createProduct(result)
     }
 }

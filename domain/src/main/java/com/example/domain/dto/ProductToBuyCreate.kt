@@ -1,20 +1,21 @@
 package com.example.domain.dto
 
-import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
 
-data class ProductCreate(
+data class ProductToBuyCreate(
     override val title: String,
-    override val productCategoryInt: Int,
+    override val productCategory: Int,
     override val isImportant : Boolean,
     override val count: Int,
     override val maxCount: Int?,
-) : ProductRequest{
+    override val isBuy: Boolean,
+) : ProductToBuyRequest {
     constructor(
         title: String,
         productCategory: ProductCategory,
         isImportant : Boolean,
         count: Int,
-        maxCount: Int?
-    ) : this(title, productCategory.id , isImportant, count, maxCount)
+        maxCount: Int?,
+        isBuy: Boolean,
+    ) : this(title, productCategory.id , isImportant, count, maxCount,isBuy)
 }

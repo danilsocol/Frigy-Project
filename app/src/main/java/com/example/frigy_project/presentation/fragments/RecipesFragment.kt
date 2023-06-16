@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.dto.ProductCreate
 import com.example.domain.models.Recipe
 import com.example.frigy_project.R
 import com.example.frigy_project.app.App
@@ -82,7 +81,7 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
         _binding = null
     }
 
-    override fun clickOnSubmit(result: ProductCreate) {
-       // viewModel.createProduct(result)
+    override fun clickOnSubmit(result: Recipe) {
+       viewModel.createRecipe(result)
     }
 }

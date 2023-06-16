@@ -38,20 +38,20 @@ sealed class Product (
     ) : Product(title, productCategory,count)
 
     companion object Factory {
-        private val productCategoryList  =  listOf(
-            (ProductCategory(1,"Жидкость", "литр")),
-            (ProductCategory(2,"Взвешиваемый","кг")),
-            (ProductCategory(3,"Поштучный","шт"))
+        val productCategoryList  =  listOf(
+            (ProductCategory(0,"Жидкость", "литр")),
+            (ProductCategory(1,"Взвешиваемый","кг")),
+            (ProductCategory(2,"Поштучный","шт"))
         )
         fun getProduct(res: ProductRequest): Product{
             return if(res.maxCount == null){
-                DefaultProduct(res.title,productCategoryList[res.productCategory],res.count)
+                DefaultProduct(res.title,productCategoryList[res.productCategoryInt],res.count)
             } else{
-                ImportantProduct(res.title,productCategoryList[res.productCategory],res.count,res.maxCount!!)
+                ImportantProduct(res.title,productCategoryList[res.productCategoryInt],res.count,res.maxCount!!)
             }
         }
 
-        fun getProductToBuyStorage(res: ProductToBuyRequest): Product{
+        fun getProductToBuy(res: ProductToBuyRequest): Product{
             return if(res.maxCount == null){
                 ProductToBuy(res.title,productCategoryList[res.productCategory],res.count,res.isBuy)
             } else{
@@ -62,7 +62,7 @@ sealed class Product (
             return res.map { getProduct(it) }
         }
         fun getAllProductToBuy(res: List<ProductToBuyRequest>): List<Product>{
-            return res.map { getProductToBuyStorage(it) }
+            return res.map { getProductToBuy(it) }
         }
     }
 }

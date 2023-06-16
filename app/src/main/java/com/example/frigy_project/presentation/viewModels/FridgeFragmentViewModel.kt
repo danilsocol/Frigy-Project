@@ -13,9 +13,9 @@ class FridgeFragmentViewModel@Inject constructor() : ViewModel() {
 
     private val productsMutable : MutableLiveData<List<Product>?> by lazy {
         MutableLiveData<List<Product>?>(listOf<Product>(
-            Product.DefaultProduct("Молоко", ProductCategory(1,"Жидкость", "литр"),  1),
-            Product.DefaultProduct( "Beer", ProductCategory(1,"Жидкость", "литр"),  2),
-            Product.DefaultProduct( "Milk", ProductCategory(1,"Жидкость", "литр"),  3),
+            Product.DefaultProduct("Молоко", ProductCategory(0,"Жидкость", "литр"),  1),
+            Product.DefaultProduct( "Beer", ProductCategory(0,"Жидкость", "литр"),  2),
+            Product.DefaultProduct( "Milk", ProductCategory(0,"Жидкость", "литр"),  3),
         ))
     }
     val products : LiveData<List<Product>?>
@@ -32,7 +32,4 @@ class FridgeFragmentViewModel@Inject constructor() : ViewModel() {
             createProductUseCase.execute(data)
             }*/
         }
-
-
-
 }

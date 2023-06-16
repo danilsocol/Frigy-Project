@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.dto.ProductCreate
 import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
+import com.example.domain.models.Recipe
 import com.example.frigy_project.R
 import com.example.frigy_project.databinding.FragmentCreateRecipeBinding
 import com.example.frigy_project.presentation.adapters.ProductInRecipeAdapter
@@ -112,25 +112,22 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
         productsInRecipe.add(product)
         productInRecipeAdapter.submitList(productsInRecipe)
         productInRecipeAdapter.notifyDataSetChanged()
-        Log.w("test",productsInRecipe.toString())
     }
 
     private fun clickSubmitBtn() // todo сделать проверку пустой ли
     {
-        /*val category = categoryMap[binding.categorySpinner.selectedItem.toString()]
-        val productList =
-
+        val category = categoryMap[binding.categorySpinner.selectedItem.toString()]
 
         val recipe : Recipe = Recipe(
-            title = binding.editName.text.toString(),
+            title = binding.title.text.toString(),
             description = "Описания пока что нет",
-            recipeCategory = ,
-            productList =
+            recipeCategory = category!!,
+            productList = productsInRecipe
         )
 
 
-        mListener?.clickOnSubmit()
-        dismiss()*/
+        mListener?.clickOnSubmit(recipe)
+        dismiss()
     }
 
     override fun onDestroyView() {
@@ -143,6 +140,6 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
     }
 
     interface CreateRecipeBottomSheetListener {
-        fun clickOnSubmit(result: ProductCreate)
+        fun clickOnSubmit(result: Recipe)
     }
 }

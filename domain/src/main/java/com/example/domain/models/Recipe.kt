@@ -6,13 +6,16 @@ data class Recipe(
     override val title: String,
     val description : String,
     val recipeCategory: RecipeCategory,
-    val productList : List<Product>
-) : IFilterable {
+    val productList : List<Product>) : IFilterable
+{
+    constructor(title: String, description: String, recipeCategory: Int, productList : List<Product> ) : this(
+        title, description, recipeCategoryList[recipeCategory] , productList
+    )
     companion object Factory {
         val recipeCategoryList  =  listOf(
-            (RecipeCategory(1, "Салат")),
-            (RecipeCategory(2, "Основное")),
-            (RecipeCategory(3, "Суп"))
+            (RecipeCategory(0, "Основное")),
+            (RecipeCategory(1, "Суп")),
+            (RecipeCategory(2, "Салат"))
         )
         fun getRecipe(res: RecipeRequest): Recipe{
 

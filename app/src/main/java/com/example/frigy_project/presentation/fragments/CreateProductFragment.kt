@@ -59,8 +59,8 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
         val category = categoryMap[binding.categorySpinner.selectedItem.toString()]
 
         val product : ProductCreate = ProductCreate(
-            title = binding.editName.text.toString(),
-            productCategory = category!!,
+            title = binding.title.text.toString(),
+            productCategoryInt = category!!,
             isImportant = binding.checkboxImportantProduct.isChecked,
             count = 0,
             maxCount = binding.maxCount.text.toString().toIntOrNull()
