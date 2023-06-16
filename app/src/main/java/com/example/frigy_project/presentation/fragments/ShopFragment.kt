@@ -1,4 +1,4 @@
-package com.example.frigy_project.presentation
+package com.example.frigy_project.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,45 +7,43 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.models.Recipe
+import com.example.domain.dto.ProductCreate
+import com.example.domain.models.Product
 import com.example.frigy_project.R
 import com.example.frigy_project.app.App
-import com.example.frigy_project.presentation.adapters.RecipeAdapter
-import com.example.frigy_project.databinding.FragmentRecipeListBinding
-import com.example.frigy_project.presentation.viewModels.RecipeFragmentViewModel
+import com.example.frigy_project.presentation.adapters.ShopAdapter
+import com.example.frigy_project.databinding.FragmentShopListBinding
+import com.example.frigy_project.presentation.viewModels.ShopFragmentViewModel
 
-class RecipesFragment : Fragment() {
+class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBottomSheetListener {
 
-    private var _binding:  FragmentRecipeListBinding? = null
+    private var _binding:  FragmentShopListBinding? = null
     private val binding get() = _binding!!
 
-    private val recipeAdapter = RecipeAdapter()
-    private lateinit var viewModel : RecipeFragmentViewModel
+    private lateinit var shopAdapter : ShopAdapter //todo убрать viewModel беренести в dagger
+    private lateinit var viewModel : ShopFragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRecipeListBinding.inflate(layoutInflater)
+        _binding = FragmentShopListBinding.inflate(layoutInflater)
 
         init()
         viewModel.init()
         return binding.root
     }
 
-    private fun init(){
+    private fun init() {
         val component = (activity?.application as App).component
-        viewModel = component.viewModelFactory().create(RecipeFragmentViewModel::class.java)
+        viewModel = component.viewModelFactory().create(ShopFragmentViewModel::class.java)
+        shopAdapter = ShopAdapter(viewModel)
 
-        val observer = Observer<List<Recipe>?> { list ->
-            recipeAdapter.setData(list)
+        val observer = Observer<List<Product>?> { list ->
+            shopAdapter.setData(list)
         }
-        viewModel.recipes.observe(viewLifecycleOwner, observer)
-
-
+        viewModel.products.observe(viewLifecycleOwner, observer)
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
         val addItem = binding.toolbar.menu.findItem(R.id.add)
@@ -58,22 +56,26 @@ class RecipesFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 addItem.isVisible = newText.isNullOrEmpty()
-                recipeAdapter.filter.filter(newText)
+                shopAdapter.filter.filter(newText)
                 return true
             }
         }
         )
 
         binding.apply {
-            rcViewAllRecipe.layoutManager = GridLayoutManager(
-                context,3,
+            rcViewFoodToBuy.layoutManager = LinearLayoutManager(
+                context,
                 LinearLayoutManager.VERTICAL, false
             )
-            rcViewAllRecipe.adapter = recipeAdapter
+            rcViewFoodToBuy.adapter = shopAdapter
         }
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun clickOnSubmit(result: ProductCreate) {
+        //viewModel.createProduct(result)
     }
 }

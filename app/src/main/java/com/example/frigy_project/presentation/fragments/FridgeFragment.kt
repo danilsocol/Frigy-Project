@@ -1,4 +1,4 @@
-package com.example.frigy_project.presentation
+package com.example.frigy_project.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ import com.example.frigy_project.databinding.FragmentFridgeBinding
 import com.example.frigy_project.presentation.viewModels.FridgeFragmentViewModel
 
 
-class FridgeFragment : Fragment(), CreateProductFragment.BottomSheetListener {
+class FridgeFragment : Fragment(), CreateProductFragment.CreateProductBottomSheetListener {
 
     private var _binding:  FragmentFridgeBinding? = null
     private val binding get() = _binding!!

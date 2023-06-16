@@ -1,23 +1,20 @@
-package com.example.frigy_project.presentation
+package com.example.frigy_project.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import com.example.domain.dto.ProductCreate
-import com.example.domain.dto.ProductRequest
 import com.example.frigy_project.R
 import com.example.frigy_project.databinding.FragmentCreateProductBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import java.util.Dictionary
 
 class CreateProductFragment  : BottomSheetDialogFragment(){
 
     private var _binding:  FragmentCreateProductBinding? = null
     private val binding get() = _binding!!
-    private var mListener: BottomSheetListener? = null
+    private var mListener: CreateProductBottomSheetListener? = null
 
     val images = arrayOf(
         R.drawable.product_category_liquid_64,
@@ -84,11 +81,11 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
         _binding = null
     }
 
-    fun setListener(listener: BottomSheetListener) {
+    fun setListener(listener: CreateProductBottomSheetListener) {
         mListener = listener
     }
 
-    interface BottomSheetListener {
+    interface CreateProductBottomSheetListener {
         fun clickOnSubmit(result: ProductCreate)
     }
 
