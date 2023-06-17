@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.dto.RecipeCreate
 import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
 import com.example.domain.models.Recipe
@@ -118,7 +119,7 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
     {
         val category = categoryMap[binding.categorySpinner.selectedItem.toString()]
 
-        val recipe : Recipe = Recipe(
+        val recipe : RecipeCreate = RecipeCreate(
             title = binding.title.text.toString(),
             description = "Описания пока что нет",
             recipeCategory = category!!,
@@ -140,6 +141,6 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
     }
 
     interface CreateRecipeBottomSheetListener {
-        fun clickOnSubmit(result: Recipe)
+        fun clickOnSubmit(result: RecipeCreate)
     }
 }

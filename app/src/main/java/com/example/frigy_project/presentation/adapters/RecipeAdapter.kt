@@ -9,7 +9,7 @@ import com.example.frigy_project.databinding.ItemRecipeBinding
 import com.example.frigy_project.presentation.filters.TitleFilter
 import com.example.frigy_project.presentation.utils.RecipeCategoryList
 
-class RecipeAdapter : BaseAdapter<Recipe>() {
+class RecipeAdapter(private val listener: OnRecipeClickListener) : BaseAdapter<Recipe>(){
     override fun setData(newList: List<Recipe>) {
         originalList = newList
         submitList(originalList)
@@ -28,11 +28,20 @@ class RecipeAdapter : BaseAdapter<Recipe>() {
         return TitleFilter(originalList!!.toList(), this)
     }
 
-    class RecipeHolder(private val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class RecipeHolder(private val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(recipe: Recipe) = with(binding) {
             nameRecipe.text = recipe.title
-            iconFoodCategory.setImageResource(RecipeCategoryList.getRecipeImgCategory(recipe.recipeCategory) )
+            iconFoodCategory.setImageResource(RecipeCategoryList.getRecipeImgCategory(recipe.recipeCategory))
 
+            itemView.setOnClickListener{
+                listener.onItemClick(recipe)
+            }
         }
     }
+
+    interface OnRecipeClickListener {
+        fun onItemClick(recipe: Recipe)
+    }
 }
+

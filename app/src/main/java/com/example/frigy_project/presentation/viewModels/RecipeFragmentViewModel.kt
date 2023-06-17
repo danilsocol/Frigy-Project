@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.domain.dto.RecipeCreate
 import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
 import com.example.domain.models.Recipe
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class RecipeFragmentViewModel@Inject constructor() : ViewModel() {
     private var recipesMutable = MutableLiveData<List<Recipe>?>(
         listOf<Recipe>(
-            Recipe( "Суп с молоком", "рецепт" , RecipeCategory(1,"Суп"),
+            Recipe( 0,"Суп с молоком", "рецепт" , RecipeCategory(1,"Суп"),
                 listOf(
                     Product.DefaultProduct("Молоко", ProductCategory(0,"Жидкость", "литр"), 1),
                     Product.DefaultProduct("Креветки", ProductCategory(0,"Жидкость", "литр"), 1),
@@ -28,8 +29,8 @@ class RecipeFragmentViewModel@Inject constructor() : ViewModel() {
         //recipesMutable.value = getAllRecipes.execute()
     }
 
-    fun createRecipe(data : Recipe){
-        recipesMutable.value = recipesMutable.value!!.plus(data) // todo тестовое
+    fun createRecipe(data : RecipeCreate){
+        recipesMutable.value = recipesMutable.value!!.plus(Recipe.getRecipe(data)) // todo тестовое
 
 
         /*viewModelScope.launch {

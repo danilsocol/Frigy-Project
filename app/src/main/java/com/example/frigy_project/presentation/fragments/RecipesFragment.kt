@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.dto.RecipeCreate
 import com.example.domain.models.Recipe
 import com.example.frigy_project.R
 import com.example.frigy_project.app.App
@@ -16,12 +18,12 @@ import com.example.frigy_project.presentation.adapters.RecipeAdapter
 import com.example.frigy_project.databinding.FragmentRecipeListBinding
 import com.example.frigy_project.presentation.viewModels.RecipeFragmentViewModel
 
-class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheetListener {
+class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheetListener, RecipeAdapter.OnRecipeClickListener {
 
     private var _binding:  FragmentRecipeListBinding? = null
     private val binding get() = _binding!!
 
-    private val recipeAdapter = RecipeAdapter()
+    private val recipeAdapter = RecipeAdapter(this)
     private lateinit var viewModel : RecipeFragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,6 +70,7 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
             return@setOnMenuItemClickListener true
         }
 
+
         binding.apply {
             rcViewAllRecipe.layoutManager = GridLayoutManager(
                 context,3,
@@ -81,7 +84,16 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
         _binding = null
     }
 
-    override fun clickOnSubmit(result: Recipe) {
+    override fun clickOnSubmit(result: RecipeCreate) {
        viewModel.createRecipe(result)
+    }
+
+    override fun onItemClick(recipe: Recipe) {
+        val bundle = Bundle()
+        bundle.apply {
+            putInt("id",recipe.id)
+        }
+
+        findNavController().navigate(R.id.toRecipe,bundle)
     }
 }

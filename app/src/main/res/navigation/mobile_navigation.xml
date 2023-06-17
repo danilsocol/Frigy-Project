@@ -22,12 +22,23 @@
         android:id="@+id/navigation_list_recipes"
         android:name="com.example.frigy_project.presentation.fragments.RecipesFragment"
         android:label="@string/title_list_recipes"
-        tools:layout="@layout/fragment_recipe_list" />
+        tools:layout="@layout/fragment_recipe_list" >
 
-<!--    <fragment
-        android:id="@+id/navigation_all_food"
-        android:name="com.example.frigy.ui.AllFoodFragment"
-        android:label="@string/title_all_food"
-        tools:layout="@layout/fragment_all_food" />-->
+        <action
+            android:id="@+id/toRecipe"
+            app:destination="@+id/navigation_info_recipe">
+            <argument app:argType="integer" android:name="id"/>
+        </action>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_info_recipe"
+        android:name="com.example.frigy_project.presentation.fragments.InfoRecipeFragment"
+        android:label="Рецепт"
+        tools:layout="@layout/fragment_info_recipe">
+        <argument app:argType="integer" android:name="id"/>
+    </fragment>
 
 </navigation>

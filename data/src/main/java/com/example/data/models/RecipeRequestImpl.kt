@@ -3,10 +3,11 @@ package com.example.data.models
 import com.example.domain.dto.RecipeRequest
 
 data class RecipeRequestImpl(
+    override val id: Int,
     override val title: String,
     override val description : String,
     override val recipeCategory: Int,
-    override val productList : List<ProductRequestImpl>
+    override val productList : List<ProductRequestImpl>,
 ): RecipeRequest
 
 /*
