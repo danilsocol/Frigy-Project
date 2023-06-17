@@ -3,13 +3,13 @@ package com.example.domain.dto
 import com.example.domain.models.ProductCategory
 
 data class ProductToBuyCreate(
-    override val title: String,
-    override val productCategory: Int,
-    override val isImportant : Boolean,
-    override val count: Int,
-    override val maxCount: Int?,
-    override val isBuy: Boolean,
-) : ProductToBuyRequest {
+     val title: String,
+     val productCategory: Int,
+     val isImportant : Boolean,
+     val count: Int,
+     val maxCount: Int?,
+     val isBuy: Boolean,
+) {
     constructor(
         title: String,
         productCategory: ProductCategory,

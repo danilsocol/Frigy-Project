@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface ProductAPI {
     @GET("products/{id}")
-    suspend fun getProductById(@Path("id") id : String) : ProductRequestImpl //todo возможно библотека не будет работать
+    suspend fun getProductById(@Path("id") id : Int) : ProductRequestImpl //todo возможно библотека не будет работать
 
     @GET("products")
     suspend fun getAllProducts() : List<ProductRequestImpl>

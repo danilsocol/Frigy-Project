@@ -4,6 +4,7 @@ import com.example.domain.dto.ProductRequest
 import com.example.domain.models.Product
 
 data class ProductRequestImpl (
+    override val id: Int,
     override var title: String,
     override var productCategoryInt: Int,
     override var isImportant : Boolean,

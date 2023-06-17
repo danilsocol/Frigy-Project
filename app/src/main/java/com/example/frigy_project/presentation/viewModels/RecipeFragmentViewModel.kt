@@ -12,16 +12,17 @@ import com.example.domain.models.RecipeCategory
 import javax.inject.Inject
 
 class RecipeFragmentViewModel@Inject constructor() : ViewModel() {
-    private var recipesMutable = MutableLiveData<List<Recipe>?>(
-        listOf<Recipe>(
+
+    private val recipesMutable : MutableLiveData<List<Recipe>?> by lazy {
+        MutableLiveData<List<Recipe>?>(listOf<Recipe>(
             Recipe( 0,"Суп с молоком", "рецепт" , RecipeCategory(1,"Суп"),
                 listOf(
-                    Product.DefaultProduct("Молоко", ProductCategory(0,"Жидкость", "литр"), 1),
-                    Product.DefaultProduct("Креветки", ProductCategory(0,"Жидкость", "литр"), 1),
+                    Product.DefaultProduct(0,"Молоко", ProductCategory(0,"Жидкость", "литр"), 1),
+                    Product.DefaultProduct(1,"Креветки", ProductCategory(0,"Жидкость", "литр"), 1),
                 )
             )
-        )
-    )
+        ))
+    }
     val recipes : LiveData<List<Recipe>?>
         get() = recipesMutable
 

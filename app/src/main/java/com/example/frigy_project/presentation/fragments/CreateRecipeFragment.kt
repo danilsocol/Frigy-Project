@@ -1,12 +1,15 @@
 package com.example.frigy_project.presentation.fragments
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.dto.RecipeCreate
 import com.example.domain.models.Product
@@ -35,9 +38,9 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
 
     val productsInRecipe = ArrayList<Product>() // todo вынести список во viewModel
     var allProduct = arrayListOf<Product>(
-        Product.DefaultProduct("Молоко", ProductCategory(1,"Жидкость", "литр"),  1),
-        Product.DefaultProduct( "Beer", ProductCategory(1,"Жидкость", "литр"),  2),
-        Product.DefaultProduct( "Milk", ProductCategory(1,"Жидкость", "литр"),  3),
+        Product.DefaultProduct(0,"Молоко", ProductCategory(1,"Жидкость", "литр"),  1),
+        Product.DefaultProduct( 1,"Beer", ProductCategory(1,"Жидкость", "литр"),  2),
+        Product.DefaultProduct( 2,"Milk", ProductCategory(1,"Жидкость", "литр"),  3),
     )
     var selectedProduct : Product = allProduct[0]
 
@@ -47,10 +50,12 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCreateRecipeBinding.inflate(layoutInflater)
+        dialog!!.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
+                or WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+
         init()
         return binding.root
     }
-
     private fun init(){
 
         val adapter = context?.let {
@@ -104,7 +109,8 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
 
     private fun clickAddProductBtn()
     {
-        val product = Product.DefaultProduct(
+        val product = Product.DefaultProduct( //todo id 0 сделать новую модель для ингридиента либо брать уже существующий продукт и к нему подписать кол-во
+            id = 0,
             title = selectedProduct.title,
             productCategory = selectedProduct.productCategory,
             count = binding.countProduct.text.toString().toIntOrNull() ?: 1
@@ -112,7 +118,7 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
 
         productsInRecipe.add(product)
         productInRecipeAdapter.submitList(productsInRecipe)
-        productInRecipeAdapter.notifyDataSetChanged()
+        productInRecipeAdapter.notifyDataSetChanged() //todo сделать setdata
     }
 
     private fun clickSubmitBtn() // todo сделать проверку пустой ли

@@ -1,6 +1,7 @@
 package com.example.domain.dto
 
 interface ProductToBuyRequest {
+    val id : Int
     val title: String
     val productCategory: Int
     val isImportant : Boolean

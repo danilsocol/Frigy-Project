@@ -4,12 +4,12 @@ import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
 
 data class ProductCreate(
-    override val title: String,
-    override val productCategoryInt: Int,
-    override val isImportant : Boolean,
-    override val count: Int,
-    override val maxCount: Int?,
-) : ProductRequest{
+    val title: String,
+    val productCategoryInt: Int,
+    val isImportant : Boolean,
+    val count: Int,
+    val maxCount: Int?,
+){
     constructor(
         title: String,
         productCategory: ProductCategory,

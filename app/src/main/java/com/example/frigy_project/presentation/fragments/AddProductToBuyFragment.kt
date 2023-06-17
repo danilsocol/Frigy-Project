@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.domain.dto.ProductCreate
@@ -28,9 +29,9 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
 
 
     var allProduct = arrayListOf<Product>(
-        Product.DefaultProduct("Молоко", ProductCategory(0,"Жидкость", "литр"),  1),
-        Product.DefaultProduct( "Beer", ProductCategory(0,"Жидкость", "литр"),  2),
-        Product.DefaultProduct( "Milk", ProductCategory(0,"Жидкость", "литр"),  3),
+        Product.DefaultProduct(0,"Молоко", ProductCategory(0,"Жидкость", "литр"),  1),
+        Product.DefaultProduct( 1,"Beer", ProductCategory(0,"Жидкость", "литр"),  2),
+        Product.DefaultProduct( 2,"Milk", ProductCategory(0,"Жидкость", "литр"),  3),
     )
     var selectedProduct : Product = allProduct[0]
     override fun onCreateView(
@@ -39,6 +40,7 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAddProductToBuyBinding.inflate(layoutInflater)
+
         init()
         return binding.root
     }
@@ -60,14 +62,16 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 binding.iconFoodCategory.setImageResource(images[allProduct[position].productCategory.id])
                 binding.countFood.setText(allProduct[position].count.toString())
+                selectedProduct = allProduct[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 binding.iconFoodCategory.setImageResource(images[allProduct[0].productCategory.id])
                 binding.countFood.setText(allProduct[0].count.toString())
+                selectedProduct = allProduct[0]
             }
         }
-        binding.productSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+     /*   binding.productSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 selectedProduct = allProduct[position]
             }
@@ -75,7 +79,7 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
             override fun onNothingSelected(parent: AdapterView<*>) {
                 selectedProduct = allProduct[0]
             }
-        }
+        }*/
 
     }
 

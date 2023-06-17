@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class ProductRepositoryImpl @Inject constructor(private val productApi : ProductAPI) : ProductRepository { // todo выделить отдельный класс, а репозиторий оставить общим (а может и нет)
 
-    override suspend fun getStorageProductById(id: String): Product {
+    override suspend fun getStorageProductById(id: Int): Product {
         val product = productApi.getProductById(id)
         return Product.getProduct(product)
     }
@@ -20,7 +20,7 @@ class ProductRepositoryImpl @Inject constructor(private val productApi : Product
     }
 
     override suspend fun createProduct(productRequest: ProductRequest): Product {
-        val mapProduct = ProductRequestImpl(productRequest.title,productRequest.productCategoryInt,productRequest.isImportant,productRequest.count,productRequest.maxCount) //todo правильно ли мапить из 1 потом обратно?
+        val mapProduct = ProductRequestImpl(productRequest.id,productRequest.title,productRequest.productCategoryInt,productRequest.isImportant,productRequest.count,productRequest.maxCount) //todo правильно ли мапить из 1 потом обратно?
         val result = productApi.createProduct(mapProduct)
         return Product.getProduct(result)
     }

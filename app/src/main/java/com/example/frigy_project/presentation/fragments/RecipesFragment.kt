@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,6 +18,8 @@ import com.example.frigy_project.app.App
 import com.example.frigy_project.presentation.adapters.RecipeAdapter
 import com.example.frigy_project.databinding.FragmentRecipeListBinding
 import com.example.frigy_project.presentation.viewModels.RecipeFragmentViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheetListener, RecipeAdapter.OnRecipeClickListener {
 
@@ -31,6 +34,7 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRecipeListBinding.inflate(layoutInflater)
+
 
         init()
         viewModel.init()
@@ -64,6 +68,13 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
         )
 
         addItem.setOnMenuItemClickListener {
+
+          /*  val bottomSheetDialog = BottomSheetDialog(requireContext())
+            val bottomSheetView = bottomSheetDialog.layoutInflater.inflate(R.layout.fragment_create_recipe, null)
+            bottomSheetDialog.setContentView(bottomSheetView)
+            bottomSheetDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+            bottomSheetDialog.show()*/
+
             val newBottomSheetFragment = CreateRecipeFragment()
             newBottomSheetFragment.setListener(this)
             newBottomSheetFragment.show(requireActivity().supportFragmentManager, "CreateRecipeFragment")
@@ -95,5 +106,11 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
         }
 
         findNavController().navigate(R.id.toRecipe,bundle)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
+        bottomNav?.visibility = View.VISIBLE
     }
 }

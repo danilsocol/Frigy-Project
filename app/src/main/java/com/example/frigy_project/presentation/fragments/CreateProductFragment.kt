@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.AdapterView
+import androidx.fragment.app.DialogFragment
 import com.example.domain.dto.ProductCreate
 import com.example.frigy_project.R
 import com.example.frigy_project.databinding.FragmentCreateProductBinding
@@ -33,6 +35,9 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCreateProductBinding.inflate(layoutInflater)
+        dialog!!.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
+                or WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+
         init()
         return binding.root
     }

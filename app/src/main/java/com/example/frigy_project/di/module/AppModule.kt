@@ -3,6 +3,7 @@ package com.example.frigy_project.di.module
 import androidx.lifecycle.ViewModel
 import com.example.frigy_project.di.utils.ViewModelKey
 import com.example.frigy_project.presentation.viewModels.FridgeFragmentViewModel
+import com.example.frigy_project.presentation.viewModels.InfoRecipeFragmentViewModel
 import com.example.frigy_project.presentation.viewModels.RecipeFragmentViewModel
 import com.example.frigy_project.presentation.viewModels.ShopFragmentViewModel
 import dagger.Binds
@@ -26,4 +27,9 @@ abstract class AppModule {
     @IntoMap
     @ViewModelKey(ShopFragmentViewModel::class)
     abstract fun provideShopFragmentViewModel(viewModel: ShopFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InfoRecipeFragmentViewModel::class)
+    abstract fun provideInfoRecipeFragmentViewModel(viewModel: InfoRecipeFragmentViewModel): ViewModel
 }
