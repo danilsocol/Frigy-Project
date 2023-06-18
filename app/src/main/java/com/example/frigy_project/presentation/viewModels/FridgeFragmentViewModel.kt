@@ -1,10 +1,10 @@
 package com.example.frigy_project.presentation.viewModels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.domain.dto.ProductCreate
-import com.example.domain.dto.ProductRequest
 import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
 import javax.inject.Inject
@@ -32,4 +32,20 @@ class FridgeFragmentViewModel@Inject constructor() : ViewModel() {
             createProductUseCase.execute(data)
             }*/
         }
+
+    fun onAddCountClick(id: Int) {
+        productsMutable.value!![id].addCount()
+    }
+
+    fun onReduceCountClick(id: Int) {
+        productsMutable.value!![id].reduceCount()
+    }
+
+    fun onAddMaxCountClick(id: Int) {
+       ( productsMutable.value!![id] as Product.ImportantProduct).addMaxCount()
+    }
+
+    fun onReduceMaxCountClick(id: Int) {
+        ( productsMutable.value!![id] as Product.ImportantProduct).reduceMaxCount()
+    }
 }

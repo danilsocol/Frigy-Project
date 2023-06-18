@@ -11,7 +11,7 @@ import com.example.frigy_project.databinding.ItemProductBinding
 import com.example.frigy_project.presentation.filters.TitleFilter
 import com.example.frigy_project.presentation.utils.ProductCategoryList
 
-class FridgeAdapter() : BaseAdapter<Product>() {
+class FridgeAdapter(private val listener: OnProductFridgeClickListener) : BaseAdapter<Product>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -66,28 +66,72 @@ class FridgeAdapter() : BaseAdapter<Product>() {
             return TitleFilter(originalList!!.toList(), this)
         }
 
-    class ProductHolder(private val binding: ItemProductBinding) :
+    inner class ProductHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product.DefaultProduct) = with(binding) {
 
             nameFood.text = product.title
-            countFood.setText(product.count.toString())
+            countFood.text = product.count.toString()
             iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
             unit.text = product.productCategory.unit
+
+            reduce.setOnClickListener{
+                if(product.count > 0){
+                    listener.onReduceCountClick(product.id)
+                    countFood.text = product.count.toString()
+                }
+            }
+            add.setOnClickListener{
+                if(product.count >= 0){
+                    listener.onAddCountClick(product.id)
+                    countFood.text = product.count.toString()
+                }
+            }
         }
     }
 
-    class ImportantProductHolder(private val binding: ItemImportantProductBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ImportantProductHolder(private val binding: ItemImportantProductBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product.ImportantProduct) = with(binding) {
             nameFood.text = product.title
             countFood.setText(product.count.toString())
             iconFoodCategory.setImageResource(ProductCategoryList.getProductImgCategory(product.productCategory))
             unit.text = product.productCategory.unit
 
+            reduce.setOnClickListener{
+                if(product.count > 0){
+                    listener.onReduceCountClick(product.id)
+                    countFood.text = product.count.toString()
+                }
+            }
+            add.setOnClickListener{
+                if(product.count >= 0){
+                    listener.onAddCountClick(product.id)
+                    countFood.text = product.count.toString()
+                }
+            }
+
+            maxReduce.setOnClickListener{
+                if(product.count > 0){
+                    listener.onReduceCountClick(product.id)
+                    countFood.text = product.maxCount.toString()
+                }
+            }
+            maxAdd.setOnClickListener{
+                if(product.count >= 0){
+                    listener.onAddCountClick(product.id)
+                    countFood.text = product.maxCount.toString()
+                }
+            }
+
             maxCount.text = product.maxCount.toString()
             unit.text = product.productCategory.unit
         }
     }
-
+    interface OnProductFridgeClickListener {
+        fun onAddCountClick(id: Int)
+        fun onReduceCountClick(id: Int)
+        fun onAddMaxCountClick(id: Int)
+        fun onReduceMaxCountClick(id: Int)
+    }
 
 }

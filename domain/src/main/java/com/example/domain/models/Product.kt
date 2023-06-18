@@ -9,29 +9,46 @@ sealed class Product (
     open val id : Int,
     override val title: String,
     open val productCategory: ProductCategory,
-    open val count: Int
+    open var count: Int
     ) : IFilterable {
+
+    fun addCount() {
+        count++
+    }
+
+    fun reduceCount() {
+        count--
+    }
 
     data class DefaultProduct(
         override val id : Int,
         override val title: String,
         override val productCategory: ProductCategory,
-        override val count: Int,
+        override var count: Int,
     ) : Product(id,title,productCategory,count)
 
     data class ImportantProduct(
         override val id : Int,
         override val title: String,
         override val productCategory: ProductCategory,
-        override val count: Int,
-        val maxCount: Int
+        override var count: Int,
+        var maxCount: Int
     ) : Product(id,title, productCategory,count)
+    {
+        fun addMaxCount() {
+            maxCount++
+        }
+
+        fun reduceMaxCount() {
+            maxCount--
+        }
+    }
 
     data class ProductToBuy(
         override val id : Int,
         override val title: String,
         override val productCategory: ProductCategory,
-        override val count: Int,
+        override var count: Int,
         var isBuy: Boolean = false
     ) : Product(id,title, productCategory,count)
 
@@ -39,7 +56,7 @@ sealed class Product (
         override val id : Int,
         override val title: String,
         override val productCategory: ProductCategory,
-        override val count: Int,
+        override var count: Int,
         val maxCount: Int,
         var isBuy: Boolean = false
     ) : Product(id,title, productCategory,count)

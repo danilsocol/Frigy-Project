@@ -20,8 +20,8 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
 
     val images = arrayOf(
         R.drawable.product_category_liquid_64,
-        R.drawable.product_category_piece_64,
-        R.drawable.product_category_weighing_64
+        R.drawable.product_category_weighing_64,
+        R.drawable.product_category_piece_64
     )
 
     var categoryMap = mapOf<String,Int>(

@@ -17,12 +17,13 @@ import com.example.frigy_project.databinding.FragmentFridgeBinding
 import com.example.frigy_project.presentation.viewModels.FridgeFragmentViewModel
 
 
-class FridgeFragment : Fragment(), CreateProductFragment.CreateProductBottomSheetListener {
+class FridgeFragment : Fragment(), CreateProductFragment.CreateProductBottomSheetListener,
+    FridgeAdapter.OnProductFridgeClickListener {
 
     private var _binding:  FragmentFridgeBinding? = null
     private val binding get() = _binding!!
 
-    private val fridgeAdapter = FridgeAdapter()
+    private val fridgeAdapter = FridgeAdapter(this)
     private lateinit var viewModel : FridgeFragmentViewModel
 
     override fun onCreateView(
@@ -87,6 +88,22 @@ class FridgeFragment : Fragment(), CreateProductFragment.CreateProductBottomShee
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onAddCountClick(id: Int) {
+         viewModel.onAddCountClick(id)
+    }
+
+    override fun onReduceCountClick(id: Int) {
+        viewModel.onReduceCountClick(id)
+    }
+
+    override fun onAddMaxCountClick(id: Int) {
+        viewModel.onAddMaxCountClick(id)
+    }
+
+    override fun onReduceMaxCountClick(id: Int) {
+        viewModel.onReduceMaxCountClick(id)
     }
 
 

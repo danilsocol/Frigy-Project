@@ -30,6 +30,10 @@ class RecipeFragmentViewModel@Inject constructor() : ViewModel() {
         //recipesMutable.value = getAllRecipes.execute()
     }
 
+    fun getRecipeById(id : Int){
+        recipesMutable.value!!.filter { it.id == id }
+    }
+
     fun createRecipe(data : RecipeCreate){
         recipesMutable.value = recipesMutable.value!!.plus(Recipe.getRecipe(data)) // todo тестовое
 
