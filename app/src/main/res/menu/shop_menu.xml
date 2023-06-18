@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search"
+        android:title="search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:icon="@drawable/search_32"
+        app:showAsAction="always|collapseActionView"
+        />
+
+    <item
+        android:id="@+id/add"
+        android:title="Добавить"
+        android:icon="@drawable/add_32"
+        />
+
+    <item
+        android:id="@+id/buy"
+        android:title="Удалить купленные"
+        android:icon="@drawable/check_64"
+        />
+</menu>

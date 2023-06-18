@@ -47,6 +47,7 @@ class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBotto
         viewModel.products.observe(viewLifecycleOwner, observer)
 
         val searchItem = binding.toolbar.menu.findItem(R.id.search)
+        val buyItem = binding.toolbar.menu.findItem(R.id.buy)
         val addItem = binding.toolbar.menu.findItem(R.id.add)
         val searchBar = searchItem.actionView as SearchView
 
@@ -66,6 +67,11 @@ class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBotto
             val newBottomSheetFragment = AddProductToBuyFragment()
             newBottomSheetFragment.setListener(this)
             newBottomSheetFragment.show(requireActivity().supportFragmentManager, "AddProductToBuyFragment")
+            return@setOnMenuItemClickListener true
+        }
+
+        buyItem.setOnMenuItemClickListener {
+            viewModel.buyProduct()
             return@setOnMenuItemClickListener true
         }
 

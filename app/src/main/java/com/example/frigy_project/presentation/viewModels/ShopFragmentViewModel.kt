@@ -41,4 +41,10 @@ class ShopFragmentViewModel@Inject constructor() : ViewModel() {
            createProductUseCase.execute(data)
            }*/
     }
+
+    fun buyProduct(){
+        productsMutable.value = productsMutable.value?.filter {
+            !(it is Product.ProductToBuy && it.isBuy || it is Product.ImportantProductToBuy && it.isBuy)
+        }
+    }
 }
