@@ -1,6 +1,7 @@
 package com.example.frigy_project.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,13 +69,6 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
         )
 
         addItem.setOnMenuItemClickListener {
-
-          /*  val bottomSheetDialog = BottomSheetDialog(requireContext())
-            val bottomSheetView = bottomSheetDialog.layoutInflater.inflate(R.layout.fragment_create_recipe, null)
-            bottomSheetDialog.setContentView(bottomSheetView)
-            bottomSheetDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
-            bottomSheetDialog.show()*/
-
             val newBottomSheetFragment = CreateRecipeFragment()
             newBottomSheetFragment.setListener(this)
             newBottomSheetFragment.show(requireActivity().supportFragmentManager, "CreateRecipeFragment")
@@ -100,6 +94,7 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
     }
 
     override fun onItemClick(recipe: Recipe) {
+
         val bundle = Bundle()
         bundle.apply {
             putInt("id",recipe.id)
@@ -113,4 +108,5 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
         val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNav?.visibility = View.VISIBLE
     }
+
 }

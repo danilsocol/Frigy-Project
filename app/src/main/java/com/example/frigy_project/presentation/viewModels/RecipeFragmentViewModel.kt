@@ -1,6 +1,5 @@
 package com.example.frigy_project.presentation.viewModels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,13 +25,11 @@ class RecipeFragmentViewModel@Inject constructor() : ViewModel() {
     val recipes : LiveData<List<Recipe>?>
         get() = recipesMutable
 
+
     fun init() {
         //recipesMutable.value = getAllRecipes.execute()
     }
 
-    fun getRecipeById(id : Int){
-        recipesMutable.value!!.filter { it.id == id }
-    }
 
     fun createRecipe(data : RecipeCreate){
         recipesMutable.value = recipesMutable.value!!.plus(Recipe.getRecipe(data)) // todo тестовое
