@@ -2,6 +2,7 @@ package com.example.data.networks
 
 import com.example.data.models.ProductRequestImpl
 import com.example.data.models.ProductToBuyRequestImpl
+import com.example.data.models.ProductToBuyUpdateRequestImpl
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -20,5 +21,5 @@ interface ProductToBuyAPI {
     suspend fun deleteCheckProducts(@Body list : List<Int>)
 
     @PUT("/api/ProductToBuy/")
-    suspend fun updateProduct(@Body product: ProductRequestImpl)
+    suspend fun updateProduct(@Body product: ProductToBuyUpdateRequestImpl)
 }

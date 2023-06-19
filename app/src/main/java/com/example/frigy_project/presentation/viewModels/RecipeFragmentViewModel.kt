@@ -9,10 +9,15 @@ import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
 import com.example.domain.models.Recipe
 import com.example.domain.models.RecipeCategory
+import com.example.domain.usecase.CreateRecipeUseCase.CreateRecipeUseCase
+import com.example.domain.usecase.GetAllRecipeUseCase.GetAllRecipeUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class RecipeFragmentViewModel@Inject constructor() : ViewModel() {
+class RecipeFragmentViewModel@Inject constructor(
+    private val getAllRecipeUseCase: GetAllRecipeUseCase,
+    private val createRecipeUseCase: CreateRecipeUseCase,
+) : ViewModel() {
 
     private val recipesMutable : MutableLiveData<List<Recipe>?> by lazy {
         MutableLiveData<List<Recipe>?>(listOf<Recipe>(
@@ -29,16 +34,17 @@ class RecipeFragmentViewModel@Inject constructor() : ViewModel() {
 
 
     fun init() {
-        //recipesMutable.value = getAllRecipes.execute()
+        viewModelScope.launch {
+            recipesMutable.value = getAllRecipeUseCase.execute()
+        }
     }
 
 
     fun createRecipe(data : RecipeCreate){
-        recipesMutable.value = recipesMutable.value!!.plus(Recipe.getRecipe(data)) // todo тестовое
-
+        recipesMutable.value = recipesMutable.value!!.plus(Recipe.getRecipe(data))
 
         viewModelScope.launch {
-           //createProductUseCase.execute(data)
+            createRecipeUseCase.execute(data)
        }
     }
 }
