@@ -14,7 +14,7 @@ data class Recipe(
         title, description, recipeCategoryList[recipeCategory] , productList
     )
     companion object Factory {
-        var countRecipe : Int = 0 // todo нужен для id переделать в guid
+        var countRecipe : Int = 0 // todo нужен для id, переделать в guid
 
         val recipeCategoryList  =  listOf(
             (RecipeCategory(0, "Основное")),
@@ -30,7 +30,7 @@ data class Recipe(
 
         fun getRecipe(res: RecipeCreate): Recipe{
             val product = Recipe(countRecipe,res.title,res.description, recipeCategoryList[res.recipeCategory],
-                res.productList)
+                res.productList.map {it -> Product.getProduct(it)}) // todo сработает?
             countRecipe++
             return product
         }

@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(private val recipeApi : RecipeAPI) : RecipeRepository {
 
-    override suspend fun getRecipeById(id: String): Recipe {
+    override suspend fun getRecipeById(id: Int): Recipe {
         val recipe = recipeApi.getRecipeById(id)
         return Recipe.getRecipe(recipe)
     }

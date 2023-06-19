@@ -7,6 +7,6 @@ import javax.inject.Inject
 class GetAllProductInFridgeUseCaseImpl @Inject constructor(private val productRepository: ProductRepository) : GetAllProductInFridgeUseCase{
     override suspend fun execute() : List<Product>
     {
-        return productRepository.getAllStorageProducts()
+        return productRepository.getAllStorageProduct()
     }
 }

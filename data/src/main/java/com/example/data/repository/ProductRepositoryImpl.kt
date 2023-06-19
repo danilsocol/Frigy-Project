@@ -15,7 +15,7 @@ class ProductRepositoryImpl @Inject constructor(private val productApi : Product
         val product = productApi.getProductById(id)
         return Product.getProduct(product)
     }
-    override suspend fun getAllStorageProducts(): List<Product> {
+    override suspend fun getAllStorageProduct(): List<Product> {
         return Product.getAllProductStorage( productApi.getAllProducts())
     }
     override suspend fun createProduct(productCreate: ProductCreate) {
