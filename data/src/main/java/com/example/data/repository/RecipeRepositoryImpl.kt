@@ -39,8 +39,7 @@ class RecipeRepositoryImpl @Inject constructor(private val recipeApi: RecipeAPI)
         try {
             return Recipe.getAllRecipe(recipeApi.getAllRecipes())
         } catch (e: Exception) {
-            Product.Factory.countProduct = 1
-            return listOf<Recipe>(
+            val mock = listOf(
                 Recipe(
                     0, "Суп с молоком", "рецепт", RecipeCategory(1, "Суп"),
                     listOf(
@@ -59,6 +58,8 @@ class RecipeRepositoryImpl @Inject constructor(private val recipeApi: RecipeAPI)
                     )
                 )
             )
+            Product.Factory.countProduct = mock.size
+            return mock
         }
     }
 

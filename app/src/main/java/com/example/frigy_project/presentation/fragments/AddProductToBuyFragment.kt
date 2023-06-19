@@ -10,7 +10,9 @@ import com.example.domain.dto.ProductToBuyCreate
 import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
 import com.example.frigy_project.R
+import com.example.frigy_project.app.App
 import com.example.frigy_project.databinding.FragmentAddProductToBuyBinding
+import com.example.frigy_project.presentation.viewModels.FridgeFragmentViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class AddProductToBuyFragment : BottomSheetDialogFragment() {
@@ -24,7 +26,7 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
         R.drawable.product_category_weighing_64
     )
 
-    var allProduct = arrayListOf<Product>(
+    var allProduct = mutableListOf<Product>(
         Product.DefaultProduct(0, "Молоко", ProductCategory(0, "Жидкость", "литр"), 1),
         Product.DefaultProduct(1, "Beer", ProductCategory(0, "Жидкость", "литр"), 2),
         Product.DefaultProduct(2, "Milk", ProductCategory(0, "Жидкость", "литр"), 3),
@@ -42,6 +44,10 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
     }
 
     private fun init() {
+
+        val component = (activity?.application as App).component
+        val viewModel = component.viewModelFactory().create(FridgeFragmentViewModel::class.java)
+        allProduct = viewModel.products.value!!.toMutableList()
 
         binding.closeBtn.setOnClickListener { dismiss() }
         binding.submitBtn.setOnClickListener { clickSubmitBtn() }
@@ -73,16 +79,6 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
                     selectedProduct = allProduct[0]
                 }
             }
-        /*   binding.productSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-               override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                   selectedProduct = allProduct[position]
-               }
-
-               override fun onNothingSelected(parent: AdapterView<*>) {
-                   selectedProduct = allProduct[0]
-               }
-           }*/
-
     }
 
     private fun clickSubmitBtn() {
@@ -90,7 +86,7 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
             title = selectedProduct.title,
             productCategory = selectedProduct.productCategory,
             isImportant = selectedProduct is Product.ImportantProduct,
-            count = binding.buyCount.toString().toIntOrNull() ?: 1,
+            count = binding.buyCount.text.toString().toIntOrNull() ?: 1,
             maxCount = null,
             isBuy = false
         )

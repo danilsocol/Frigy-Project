@@ -28,12 +28,13 @@ class ProductRepositoryImpl @Inject constructor(private val productApi: ProductA
         return try {
             Product.getAllProductStorage(productApi.getAllProducts())
         } catch (e: Exception) {
-            Product.Factory.countProduct = 3
-            listOf<Product>(
+            val mock = listOf<Product>(
                 Product.DefaultProduct(0, "Молоко", ProductCategory(0, "Жидкость", "литр"), 1),
                 Product.DefaultProduct(1, "Beer", ProductCategory(0, "Жидкость", "литр"), 2),
                 Product.DefaultProduct(2, "Milk", ProductCategory(0, "Жидкость", "литр"), 3),
             )
+            Product.Factory.countProduct = mock.size
+            mock
         }
     }
 

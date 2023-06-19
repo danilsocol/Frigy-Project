@@ -13,22 +13,16 @@ import javax.inject.Inject
 class ProductToBuyRepositoryImpl @Inject constructor(private val productToBuyApi: ProductToBuyAPI) :
     ProductToBuyRepository {
     override suspend fun getAllProductsToBuy(): List<Product> {
-        try {
-            return Product.getAllProductToBuy(productToBuyApi.getAllProducts())
+        return try {
+            Product.getAllProductToBuy(productToBuyApi.getAllProducts())
         } catch (e: Exception) {
-            Product.Factory.countProduct = 4
-            return listOf<Product>(
+            val mock = listOf<Product>(
                 Product.ProductToBuy(0, "Молоко", ProductCategory(0, "Жидкость", "литр"), 1, true),
                 Product.ProductToBuy(1, "Beer", ProductCategory(0, "Жидкость", "литр"), 2),
-                Product.ProductToBuy(2, "Milk", ProductCategory(0, "Жидкость", "литр"), 4),
-                Product.ImportantProductToBuy(
-                    3,
-                    "Milk",
-                    ProductCategory(0, "Жидкость", "литр"),
-                    1,
-                    5
-                ),
+                Product.ProductToBuy(2, "Milk", ProductCategory(0, "Жидкость", "литр"), 4)
             )
+            Product.Factory.countProduct = mock.size
+            mock
         }
     }
 
