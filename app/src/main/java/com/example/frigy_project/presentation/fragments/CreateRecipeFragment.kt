@@ -18,8 +18,10 @@ import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
 import com.example.domain.models.Recipe
 import com.example.frigy_project.R
+import com.example.frigy_project.app.App
 import com.example.frigy_project.databinding.FragmentCreateRecipeBinding
 import com.example.frigy_project.presentation.adapters.ProductInRecipeAdapter
+import com.example.frigy_project.presentation.viewModels.FridgeFragmentViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class CreateRecipeFragment : BottomSheetDialogFragment() {
@@ -59,6 +61,10 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
         return binding.root
     }
     private fun init(){
+
+        val component = (activity?.application as App).component
+        val viewModel = component.viewModelFactory().create(FridgeFragmentViewModel::class.java)
+        allProduct = viewModel.products.value as ArrayList<Product>
 
         val adapter = context?.let {
             ArrayAdapter(
