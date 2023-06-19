@@ -1,6 +1,7 @@
 package com.example.data.networks
 
 import com.example.data.models.ProductRequestImpl
+import com.example.data.models.ProductUpdateRequestImpl
 import com.example.domain.dto.ProductCreate
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -17,5 +18,5 @@ interface ProductAPI {
     @POST("products")
     suspend fun createProduct(@Body product: ProductRequestImpl)
     @PUT("products")
-    suspend fun updateProduct(@Body product: ProductRequestImpl)
+    suspend fun updateProduct(@Body product: ProductUpdateRequestImpl)
 }

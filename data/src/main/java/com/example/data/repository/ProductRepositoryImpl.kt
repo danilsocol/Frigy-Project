@@ -1,9 +1,11 @@
 package com.example.data.repository
 
 import com.example.data.models.ProductRequestImpl
+import com.example.data.models.ProductUpdateRequestImpl
 import com.example.data.networks.ProductAPI
 import com.example.domain.dto.ProductCreate
 import com.example.domain.dto.ProductRequest
+import com.example.domain.dto.ProductUpdate
 import com.example.domain.models.Product
 import com.example.domain.repository.ProductRepository
 import javax.inject.Inject
@@ -24,9 +26,8 @@ class ProductRepositoryImpl @Inject constructor(private val productApi : Product
         productApi.createProduct(productRequest)
     }
 
-    override suspend fun updateProduct(productRequest: ProductRequest) {
-        val mapProduct = ProductRequestImpl(productRequest.id,productRequest.title,productRequest.productCategory,productRequest.isImportant
-            ,productRequest.count,productRequest.maxCount)
+    override suspend fun updateProduct(productUpdate: ProductUpdate) {
+        val mapProduct = ProductUpdateRequestImpl(productUpdate.id,productUpdate.count,productUpdate.maxCount!!)
         productApi.updateProduct(mapProduct)
     }
 }
