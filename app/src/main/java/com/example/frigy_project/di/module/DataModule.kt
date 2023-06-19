@@ -4,8 +4,10 @@ import com.example.data.networks.ProductAPI
 import com.example.data.networks.ProductToBuyAPI
 import com.example.data.networks.RecipeAPI
 import com.example.data.repository.ProductRepositoryImpl
+import com.example.data.repository.ProductToBuyRepositoryImpl
 import com.example.data.repository.RecipeRepositoryImpl
 import com.example.domain.repository.ProductRepository
+import com.example.domain.repository.ProductToBuyRepository
 import com.example.domain.repository.RecipeRepository
 import dagger.Binds
 import dagger.Module
@@ -45,9 +47,6 @@ abstract class DataModule {
     abstract fun provideProductRepository(productRepositoryImpl: ProductRepositoryImpl) : ProductRepository
     @Binds
     abstract fun provideRecipeRepository(recipeRepositoryImpl: RecipeRepositoryImpl) : RecipeRepository
-/*    @Binds
-    abstract fun provideProductRepository(productAPI: ProductAPI) : ProductRepository*/
-/*    @Binds
-    abstract fun provideRecipeRepository(recipeAPI: RecipeAPI) : RecipeRepository*/
-
+    @Binds
+    abstract fun provideProductToBuyRepository(productToBuyRepositoryImpl: ProductToBuyRepositoryImpl) : ProductToBuyRepository
 }

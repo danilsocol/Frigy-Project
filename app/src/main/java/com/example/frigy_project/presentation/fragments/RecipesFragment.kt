@@ -38,7 +38,6 @@ class RecipesFragment : Fragment(), CreateRecipeFragment.CreateRecipeBottomSheet
 
 
         init()
-        viewModel.init()
         return binding.root
     }
 

@@ -17,12 +17,7 @@ class InfoRecipeFragmentViewModel@Inject constructor(private val getRecipeByIdUs
 
     private val recipeMutable : MutableLiveData<Recipe> by lazy {
         MutableLiveData<Recipe>(
-            Recipe( 0,"Суп с молоком", "Описания пока что нет" , RecipeCategory(1,"Суп"),
-                listOf(
-                    Product.DefaultProduct(0,"Молоко", ProductCategory(0,"Жидкость", "литр"), 1),
-                    Product.DefaultProduct(1,"Креветки", ProductCategory(0,"Жидкость", "литр"), 1),
-                )
-            )
+
         )
     }
     val recipe : LiveData<Recipe>

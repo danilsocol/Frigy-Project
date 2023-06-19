@@ -20,20 +20,13 @@ class RecipeFragmentViewModel@Inject constructor(
 ) : ViewModel() {
 
     private val recipesMutable : MutableLiveData<List<Recipe>?> by lazy {
-        MutableLiveData<List<Recipe>?>(listOf<Recipe>(
-            Recipe( 0,"Суп с молоком", "рецепт" , RecipeCategory(1,"Суп"),
-                listOf(
-                    Product.DefaultProduct(0,"Молоко", ProductCategory(0,"Жидкость", "литр"), 1),
-                    Product.DefaultProduct(1,"Креветки", ProductCategory(0,"Жидкость", "литр"), 1),
-                )
-            )
-        ))
+        MutableLiveData<List<Recipe>?>()
     }
     val recipes : LiveData<List<Recipe>?>
         get() = recipesMutable
 
 
-    fun init() {
+    init {
         viewModelScope.launch {
             recipesMutable.value = getAllRecipeUseCase.execute()
         }

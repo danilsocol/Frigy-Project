@@ -38,7 +38,7 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
         "Суп" to 1,
         "Салат" to  2)
 
-    val productsInRecipe = ArrayList<Product>() // todo вынести список во viewModel
+    val productsInRecipe = ArrayList<Product>()
     var allProduct = arrayListOf<Product>(
         Product.DefaultProduct(0,"Молоко", ProductCategory(1,"Жидкость", "литр"),  1),
         Product.DefaultProduct( 1,"Beer", ProductCategory(1,"Жидкость", "литр"),  2),

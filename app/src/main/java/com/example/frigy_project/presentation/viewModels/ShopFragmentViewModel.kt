@@ -24,17 +24,12 @@ class ShopFragmentViewModel@Inject constructor(
 ) : ViewModel() {
 
     private val productsMutable : MutableLiveData<List<Product>?> by lazy {
-        MutableLiveData<List<Product>?>(listOf<Product>(
-            Product.ProductToBuy( 0,"Молоко", ProductCategory(0,"Жидкость", "литр"), 1,true),
-            Product.ProductToBuy(1,"Beer", ProductCategory(0,"Жидкость", "литр"), 2),
-            Product.ProductToBuy( 2,"Milk", ProductCategory(0,"Жидкость", "литр"), 4),
-            Product.ImportantProductToBuy(3, "Milk", ProductCategory(0,"Жидкость", "литр"), 1, 5),
-        ))
+        MutableLiveData<List<Product>?>()
     }
     val products : LiveData<List<Product>?>
         get() = productsMutable
 
-    fun init() {
+    init {
         viewModelScope.launch {
             productsMutable.value = getAllProductToBuyUseCase.execute()
         }

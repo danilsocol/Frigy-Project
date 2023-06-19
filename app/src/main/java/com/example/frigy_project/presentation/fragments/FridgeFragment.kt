@@ -34,7 +34,6 @@ class FridgeFragment : Fragment(), CreateProductFragment.CreateProductBottomShee
         _binding = FragmentFridgeBinding.inflate(layoutInflater)
 
         init()
-        viewModel.init()
         return binding.root
     }
 

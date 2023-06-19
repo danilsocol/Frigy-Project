@@ -25,16 +25,12 @@ class FridgeFragmentViewModel@Inject constructor(
     ) : ViewModel() {
 
     private val productsMutable : MutableLiveData<List<Product>?> by lazy {
-        MutableLiveData<List<Product>?>(listOf<Product>(
-            Product.DefaultProduct(0,"Молоко", ProductCategory(0,"Жидкость", "литр"),  1),
-            Product.DefaultProduct(1, "Beer", ProductCategory(0,"Жидкость", "литр"),  2),
-            Product.DefaultProduct(2, "Milk", ProductCategory(0,"Жидкость", "литр"),  3),
-        ))
+        MutableLiveData<List<Product>?>()
     }
     val products : LiveData<List<Product>?>
         get() = productsMutable
 
-    fun init() {
+    init {
         viewModelScope.launch {
             productsMutable.value = getAllProductInFridgeUseCase.execute()
         }
@@ -72,7 +68,7 @@ class FridgeFragmentViewModel@Inject constructor(
         submitChange(product)
     }
 
-    fun submitChange(product : Product){
+    private fun submitChange(product : Product){
         val newProduct : ProductUpdate
         if(product !is Product.ImportantProduct)
             newProduct = ProductUpdate(product.id,product.count, null)

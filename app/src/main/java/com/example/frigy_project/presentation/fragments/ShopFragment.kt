@@ -32,7 +32,6 @@ class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBotto
         _binding = FragmentShopListBinding.inflate(layoutInflater)
 
         init()
-        viewModel.init()
         return binding.root
     }
 
