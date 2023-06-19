@@ -91,7 +91,6 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
             isBuy = false
         )
 
-
         mListener?.clickOnSubmit(product)
         dismiss()
     }

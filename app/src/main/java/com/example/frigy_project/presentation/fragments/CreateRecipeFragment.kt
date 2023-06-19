@@ -37,7 +37,7 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
     )
 
     val productsInRecipe = ArrayList<Product>()
-    var allProduct = arrayListOf<Product>(
+    var allProduct = mutableListOf<Product>(
         Product.DefaultProduct(0, "Молоко", ProductCategory(1, "Жидкость", "литр"), 1),
         Product.DefaultProduct(1, "Beer", ProductCategory(1, "Жидкость", "литр"), 2),
         Product.DefaultProduct(2, "Milk", ProductCategory(1, "Жидкость", "литр"), 3),
@@ -63,7 +63,7 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
 
         val component = (activity?.application as App).component
         val viewModel = component.viewModelFactory().create(FridgeFragmentViewModel::class.java)
-        allProduct = viewModel.products.value as ArrayList<Product>
+        allProduct = viewModel.products.value?.toMutableList() ?: mutableListOf()
 
         val adapter = context?.let {
             ArrayAdapter(
