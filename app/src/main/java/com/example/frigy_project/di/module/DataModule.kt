@@ -21,6 +21,7 @@ abstract class DataModule {
     companion object {
 
         private val BASE_URL = "http://10.0.2.2:5235"
+
         @Provides
         fun provideRetrofit(): Retrofit {
             return Retrofit.Builder()
@@ -28,6 +29,7 @@ abstract class DataModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
+
         @Provides
         fun provideRecipeApi(retrofit: Retrofit): RecipeAPI {
             return retrofit.create(RecipeAPI::class.java)
@@ -43,10 +45,13 @@ abstract class DataModule {
             return retrofit.create(ProductToBuyAPI::class.java)
         }
     }
+
     @Binds
-    abstract fun provideProductRepository(productRepositoryImpl: ProductRepositoryImpl) : ProductRepository
+    abstract fun provideProductRepository(productRepositoryImpl: ProductRepositoryImpl): ProductRepository
+
     @Binds
-    abstract fun provideRecipeRepository(recipeRepositoryImpl: RecipeRepositoryImpl) : RecipeRepository
+    abstract fun provideRecipeRepository(recipeRepositoryImpl: RecipeRepositoryImpl): RecipeRepository
+
     @Binds
-    abstract fun provideProductToBuyRepository(productToBuyRepositoryImpl: ProductToBuyRepositoryImpl) : ProductToBuyRepository
+    abstract fun provideProductToBuyRepository(productToBuyRepositoryImpl: ProductToBuyRepositoryImpl): ProductToBuyRepository
 }
