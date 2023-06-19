@@ -11,6 +11,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.dto.ProductCreate
+import com.example.domain.dto.ProductRequest
 import com.example.domain.dto.RecipeCreate
 import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
@@ -124,12 +126,21 @@ class CreateRecipeFragment : BottomSheetDialogFragment() {
     private fun clickSubmitBtn() // todo сделать проверку пустой ли
     {
         val category = categoryMap[binding.categorySpinner.selectedItem.toString()]
+        val productList: List<ProductCreate> = productsInRecipe.map { it ->
+            ProductCreate(
+                title = it.title,
+                productCategory = it.productCategory,
+                isImportant = false,
+                count = it.count,
+                maxCount = null
+            )
+        }
 
         val recipe : RecipeCreate = RecipeCreate(
             title = binding.title.text.toString(),
             description = "Описания пока что нет",
             recipeCategory = category!!,
-            productList = productsInRecipe
+            productList = productList
         )
 
 

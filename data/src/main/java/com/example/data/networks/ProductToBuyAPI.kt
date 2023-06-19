@@ -6,6 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 interface ProductToBuyAPI {
 
@@ -17,4 +18,7 @@ interface ProductToBuyAPI {
 
     @DELETE("/api/ProductToBuy/")
     suspend fun deleteCheckProducts(@Body list : List<Int>)
+
+    @PUT("/api/ProductToBuy/")
+    suspend fun updateProduct(@Body product: ProductRequestImpl)
 }

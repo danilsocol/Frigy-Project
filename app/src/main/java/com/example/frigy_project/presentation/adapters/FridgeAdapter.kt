@@ -112,14 +112,14 @@ class FridgeAdapter(private val listener: OnProductFridgeClickListener) : BaseAd
             }
 
             maxReduce.setOnClickListener{
-                if(product.count > 0){
-                    listener.onReduceCountClick(product.id)
+                if(product.maxCount > 0){
+                    listener.onReduceMaxCountClick(product.id)
                     maxCount.text = product.maxCount.toString()
                 }
             }
             maxAdd.setOnClickListener{
-                if(product.count >= 0){
-                    listener.onAddCountClick(product.id)
+                if(product.maxCount >= 0){
+                    listener.onAddMaxCountClick(product.id)
                     maxCount.text = product.maxCount.toString()
                 }
             }
