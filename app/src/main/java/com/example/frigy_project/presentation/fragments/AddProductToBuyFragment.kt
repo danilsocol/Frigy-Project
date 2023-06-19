@@ -26,8 +26,6 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
         R.drawable.product_category_weighing_64
     )
 
-
-
     var allProduct = arrayListOf<Product>(
         Product.DefaultProduct(0,"Молоко", ProductCategory(0,"Жидкость", "литр"),  1),
         Product.DefaultProduct( 1,"Beer", ProductCategory(0,"Жидкость", "литр"),  2),
