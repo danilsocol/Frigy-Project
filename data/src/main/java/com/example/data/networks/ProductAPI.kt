@@ -10,7 +10,7 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 interface ProductAPI {
     @GET("products/{id}")
-    suspend fun getProductById(@Path("id") id : Int) : ProductRequestImpl //todo возможно библотека не будет работать
+    suspend fun getProductById(@Path("id") id : Int) : ProductRequestImpl
 
     @GET("/api/Product/all")
     suspend fun getAllProducts() : List<ProductRequestImpl>

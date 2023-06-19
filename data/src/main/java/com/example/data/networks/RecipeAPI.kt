@@ -9,7 +9,7 @@ import retrofit2.http.Path
 
 interface RecipeAPI {
     @GET("recipes/{id}")
-    suspend fun getRecipeById(@Path("id") id : Int) : RecipeRequestImpl //todo id string
+    suspend fun getRecipeById(@Path("id") id : Int) : RecipeRequestImpl
 
     @GET("recipes")
     fun getAllRecipes() : List<RecipeRequestImpl>
