@@ -8,27 +8,26 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.dto.ProductCreate
 import com.example.domain.dto.ProductToBuyCreate
 import com.example.domain.models.Product
 import com.example.frigy_project.R
 import com.example.frigy_project.app.App
-import com.example.frigy_project.presentation.adapters.ShopAdapter
 import com.example.frigy_project.databinding.FragmentShopListBinding
+import com.example.frigy_project.presentation.adapters.ShopAdapter
 import com.example.frigy_project.presentation.viewModels.ShopFragmentViewModel
 
 class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBottomSheetListener {
 
-    private var _binding:  FragmentShopListBinding? = null
+    private var _binding: FragmentShopListBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var shopAdapter : ShopAdapter //todo убрать viewModel беренести в dagger
-    private lateinit var viewModel : ShopFragmentViewModel
+    private lateinit var shopAdapter: ShopAdapter
+    private lateinit var viewModel: ShopFragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentShopListBinding.inflate(layoutInflater)
 
         init()
@@ -50,7 +49,7 @@ class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBotto
         val addItem = binding.toolbar.menu.findItem(R.id.add)
         val searchBar = searchItem.actionView as SearchView
 
-        searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -65,7 +64,10 @@ class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBotto
         addItem.setOnMenuItemClickListener {
             val newBottomSheetFragment = AddProductToBuyFragment()
             newBottomSheetFragment.setListener(this)
-            newBottomSheetFragment.show(requireActivity().supportFragmentManager, "AddProductToBuyFragment")
+            newBottomSheetFragment.show(
+                requireActivity().supportFragmentManager,
+                "AddProductToBuyFragment"
+            )
             return@setOnMenuItemClickListener true
         }
 
@@ -82,6 +84,7 @@ class ShopFragment : Fragment(), AddProductToBuyFragment.CreateProductToBuyBotto
             rcViewFoodToBuy.adapter = shopAdapter
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

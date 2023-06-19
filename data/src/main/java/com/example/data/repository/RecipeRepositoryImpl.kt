@@ -39,6 +39,7 @@ class RecipeRepositoryImpl @Inject constructor(private val recipeApi: RecipeAPI)
         try {
             return Recipe.getAllRecipe(recipeApi.getAllRecipes())
         } catch (e: Exception) {
+            Product.Factory.countProduct = 0
             return listOf<Recipe>(
                 Recipe(
                     0, "Суп с молоком", "рецепт", RecipeCategory(1, "Суп"),

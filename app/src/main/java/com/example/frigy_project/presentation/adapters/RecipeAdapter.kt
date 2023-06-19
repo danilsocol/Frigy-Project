@@ -9,14 +9,14 @@ import com.example.frigy_project.databinding.ItemRecipeBinding
 import com.example.frigy_project.presentation.filters.TitleFilter
 import com.example.frigy_project.presentation.utils.RecipeCategoryList
 
-class RecipeAdapter(private val listener: OnRecipeClickListener) : BaseAdapter<Recipe>(){
+class RecipeAdapter(private val listener: OnRecipeClickListener) : BaseAdapter<Recipe>() {
     override fun setData(newList: List<Recipe>) {
         originalList = newList
         submitList(originalList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RecipeHolder(binding)
     }
 
@@ -25,16 +25,19 @@ class RecipeAdapter(private val listener: OnRecipeClickListener) : BaseAdapter<R
     }
 
     override fun getFilter(): Filter {
-        return TitleFilter(originalList!!.toList(), this)
+        var l = originalList?.toList()
+        if (l == null) l = currentList
+        return TitleFilter(l, this)
     }
 
-    inner class RecipeHolder(private val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class RecipeHolder(private val binding: ItemRecipeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(recipe: Recipe) = with(binding) {
             nameRecipe.text = recipe.title
             iconFoodCategory.setImageResource(RecipeCategoryList.getRecipeImgCategory(recipe.recipeCategory))
 
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 listener.onItemClick(recipe)
             }
         }

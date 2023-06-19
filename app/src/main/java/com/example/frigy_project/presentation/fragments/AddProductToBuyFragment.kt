@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import com.example.domain.dto.ProductCreate
 import com.example.domain.dto.ProductToBuyCreate
 import com.example.domain.models.Product
 import com.example.domain.models.ProductCategory
@@ -16,7 +14,7 @@ import com.example.frigy_project.databinding.FragmentAddProductToBuyBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class AddProductToBuyFragment : BottomSheetDialogFragment() {
-    private var _binding:  FragmentAddProductToBuyBinding? = null
+    private var _binding: FragmentAddProductToBuyBinding? = null
     private val binding get() = _binding!!
     private var mListener: CreateProductToBuyBottomSheetListener? = null
 
@@ -27,25 +25,25 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
     )
 
     var allProduct = arrayListOf<Product>(
-        Product.DefaultProduct(0,"Молоко", ProductCategory(0,"Жидкость", "литр"),  1),
-        Product.DefaultProduct( 1,"Beer", ProductCategory(0,"Жидкость", "литр"),  2),
-        Product.DefaultProduct( 2,"Milk", ProductCategory(0,"Жидкость", "литр"),  3),
+        Product.DefaultProduct(0, "Молоко", ProductCategory(0, "Жидкость", "литр"), 1),
+        Product.DefaultProduct(1, "Beer", ProductCategory(0, "Жидкость", "литр"), 2),
+        Product.DefaultProduct(2, "Milk", ProductCategory(0, "Жидкость", "литр"), 3),
     )
-    var selectedProduct : Product = allProduct[0]
+    var selectedProduct: Product = allProduct[0]
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddProductToBuyBinding.inflate(layoutInflater)
 
         init()
         return binding.root
     }
 
-    private fun init(){
+    private fun init() {
 
-        binding.closeBtn.setOnClickListener{dismiss()}
+        binding.closeBtn.setOnClickListener { dismiss() }
         binding.submitBtn.setOnClickListener { clickSubmitBtn() }
 
         val adapter = context?.let {
@@ -56,41 +54,46 @@ class AddProductToBuyFragment : BottomSheetDialogFragment() {
         }
         binding.productSpinner.adapter = adapter
 
-        binding.productSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                binding.iconFoodCategory.setImageResource(images[allProduct[position].productCategory.id])
-                binding.countFood.setText(allProduct[position].count.toString())
-                selectedProduct = allProduct[position]
-            }
+        binding.productSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    binding.iconFoodCategory.setImageResource(images[allProduct[position].productCategory.id])
+                    binding.countFood.text = allProduct[position].count.toString()
+                    selectedProduct = allProduct[position]
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                binding.iconFoodCategory.setImageResource(images[allProduct[0].productCategory.id])
-                binding.countFood.setText(allProduct[0].count.toString())
-                selectedProduct = allProduct[0]
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    binding.iconFoodCategory.setImageResource(images[allProduct[0].productCategory.id])
+                    binding.countFood.text = allProduct[0].count.toString()
+                    selectedProduct = allProduct[0]
+                }
             }
-        }
-     /*   binding.productSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                selectedProduct = allProduct[position]
-            }
+        /*   binding.productSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+               override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                   selectedProduct = allProduct[position]
+               }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                selectedProduct = allProduct[0]
-            }
-        }*/
+               override fun onNothingSelected(parent: AdapterView<*>) {
+                   selectedProduct = allProduct[0]
+               }
+           }*/
 
     }
 
-    private fun clickSubmitBtn() // todo сделать проверку пустой ли
-    {
+    private fun clickSubmitBtn() {
         val product = ProductToBuyCreate(
-                title = selectedProduct.title,
-                productCategory = selectedProduct.productCategory,
-                isImportant = selectedProduct is Product.ImportantProduct,
-                count = binding.buyCount.toString().toIntOrNull() ?: 1,
-                maxCount = null,
-                isBuy = false
-            )
+            title = selectedProduct.title,
+            productCategory = selectedProduct.productCategory,
+            isImportant = selectedProduct is Product.ImportantProduct,
+            count = binding.buyCount.toString().toIntOrNull() ?: 1,
+            maxCount = null,
+            isBuy = false
+        )
 
 
         mListener?.clickOnSubmit(product)

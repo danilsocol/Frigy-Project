@@ -16,6 +16,7 @@ class ProductToBuyRepositoryImpl @Inject constructor(private val productToBuyApi
         try {
             return Product.getAllProductToBuy(productToBuyApi.getAllProducts())
         } catch (e: Exception) {
+            Product.Factory.countProduct = 3
             return listOf<Product>(
                 Product.ProductToBuy(0, "Молоко", ProductCategory(0, "Жидкость", "литр"), 1, true),
                 Product.ProductToBuy(1, "Beer", ProductCategory(0, "Жидкость", "литр"), 2),

@@ -1,6 +1,5 @@
 package com.example.frigy_project.presentation.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -64,7 +63,9 @@ class FridgeAdapter(private val listener: OnProductFridgeClickListener) : BaseAd
         }
 
         override fun getFilter(): Filter {
-            return TitleFilter(originalList!!.toList(), this)
+            var l = originalList?.toList()
+            if (l == null) l = currentList
+            return TitleFilter(l, this)
         }
 
     inner class ProductHolder(private val binding: ItemProductBinding) :
