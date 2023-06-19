@@ -6,5 +6,5 @@ data class RecipeCreate(
     val title: String,
     val description : String,
     val recipeCategory: Int,
-    val productList :  List<Product>
+    val productList :  List<ProductCreate>
 )

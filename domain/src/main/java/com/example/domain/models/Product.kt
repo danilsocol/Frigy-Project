@@ -69,24 +69,27 @@ sealed class Product (
         )
         var countProduct : Int = 0 // todo нужен для id переделать в guid
         fun getProduct(res: ProductRequest): Product{
+            checkCount(res.id)
             return if(res.maxCount == null){
-                DefaultProduct(res.id,res.title,productCategoryList[res.productCategoryInt],res.count)
+                DefaultProduct(res.id,res.title,productCategoryList[res.productCategory],res.count)
             } else{
-                ImportantProduct(res.id,res.title,productCategoryList[res.productCategoryInt],res.count,res.maxCount!!)
+                ImportantProduct(res.id,res.title,productCategoryList[res.productCategory],res.count,res.maxCount!!)
             }
         }
 
         fun getProduct(res: ProductCreate): Product{
-            Recipe.countRecipe++
-            return if(res.maxCount == null){
-                DefaultProduct(countProduct,res.title,productCategoryList[res.productCategoryInt],res.count)
+            val product : Product
+            if(res.maxCount == null){
+                product = DefaultProduct(countProduct,res.title,productCategoryList[res.productCategory],res.count)
             } else{
-                ImportantProduct(countProduct,res.title,productCategoryList[res.productCategoryInt],res.count,res.maxCount)
+                product = ImportantProduct(countProduct,res.title,productCategoryList[res.productCategory],res.count,res.maxCount)
             }
+            countProduct++
+            return product
         }
 
         fun getProductToBuy(res: ProductToBuyRequest): Product{
-            Recipe.countRecipe++
+            checkCount(res.id)
             return if(res.maxCount == null){
                 ProductToBuy(res.id,res.title,productCategoryList[res.productCategory],res.count,res.isBuy)
             } else{
@@ -95,11 +98,24 @@ sealed class Product (
         }
 
         fun getProductToBuy(res: ProductToBuyCreate): Product{
-            Recipe.countRecipe++
-            return if(res.maxCount == null){
-                ProductToBuy(countProduct,res.title,productCategoryList[res.productCategory],res.count,res.isBuy)
+            val product : Product
+            if(res.maxCount == null){
+                product = ProductToBuy(countProduct,res.title,productCategoryList[res.productCategory],res.count,res.isBuy)
             } else{
-                ImportantProductToBuy(countProduct,res.title,productCategoryList[res.productCategory],res.count,res.maxCount,res.isBuy)
+                product = ImportantProductToBuy(countProduct,res.title,productCategoryList[res.productCategory],res.count,res.maxCount,res.isBuy)
+            }
+            countProduct++
+            return product
+        }
+        fun getNewId() : Int{
+            val result = countProduct
+            countProduct++
+            return result
+        }
+        fun checkCount(id : Int){
+            if(id >= countProduct)
+            {
+                countProduct = id + 1
             }
         }
         fun getAllProductStorage(res: List<ProductRequest>): List<Product>{

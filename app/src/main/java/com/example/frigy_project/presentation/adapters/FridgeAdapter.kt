@@ -1,5 +1,6 @@
 package com.example.frigy_project.presentation.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -113,13 +114,13 @@ class FridgeAdapter(private val listener: OnProductFridgeClickListener) : BaseAd
             maxReduce.setOnClickListener{
                 if(product.count > 0){
                     listener.onReduceCountClick(product.id)
-                    countFood.text = product.maxCount.toString()
+                    maxCount.text = product.maxCount.toString()
                 }
             }
             maxAdd.setOnClickListener{
                 if(product.count >= 0){
                     listener.onAddCountClick(product.id)
-                    countFood.text = product.maxCount.toString()
+                    maxCount.text = product.maxCount.toString()
                 }
             }
 

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AdapterView
-import androidx.fragment.app.DialogFragment
 import com.example.domain.dto.ProductCreate
 import com.example.frigy_project.R
 import com.example.frigy_project.databinding.FragmentCreateProductBinding
@@ -65,7 +64,7 @@ class CreateProductFragment  : BottomSheetDialogFragment(){
 
         val product : ProductCreate = ProductCreate(
             title = binding.title.text.toString(),
-            productCategoryInt = category!!,
+            productCategory = category!!,
             isImportant = binding.checkboxImportantProduct.isChecked,
             count = 0,
             maxCount = binding.maxCount.text.toString().toIntOrNull()

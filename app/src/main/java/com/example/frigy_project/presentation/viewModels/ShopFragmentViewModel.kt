@@ -27,8 +27,7 @@ class ShopFragmentViewModel@Inject constructor() : ViewModel() {
     }
 
 
-    fun updateSelectedItem(position : Int,product: Product) { //todo обновляется весь список в адаптере или как?
-        //todo добавить сохранине в репку
+    fun updateSelectedItem(position : Int,product: Product) {
         val productList = productsMutable.value?.toMutableList() ?: return
         productList[position] = product
         productsMutable.value = productList

@@ -22,16 +22,29 @@ data class Recipe(
             (RecipeCategory(2, "Салат"))
         )
         fun getRecipe(res: RecipeRequest): Recipe{
-            countRecipe++
+            checkCount(res.id)
             return Recipe(res.id,res.title,res.description, recipeCategoryList[res.recipeCategory],
                 res.productList.map { recipe -> Product.getProduct(recipe) })
 
         }
 
         fun getRecipe(res: RecipeCreate): Recipe{
-            countRecipe++
-            return Recipe(countRecipe,res.title,res.description, recipeCategoryList[res.recipeCategory],
+            val product = Recipe(countRecipe,res.title,res.description, recipeCategoryList[res.recipeCategory],
                 res.productList)
+            countRecipe++
+            return product
+        }
+        fun getNewId() : Int{
+            val result = countRecipe
+            countRecipe++
+            return result
+        }
+
+        fun checkCount(id : Int){
+            if(id >= countRecipe)
+            {
+                countRecipe = id + 1
+            }
         }
 
         fun getAllRecipe(res: List<RecipeRequest>): List<Recipe>{
