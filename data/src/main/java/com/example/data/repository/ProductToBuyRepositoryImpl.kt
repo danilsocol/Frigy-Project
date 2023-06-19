@@ -16,7 +16,7 @@ class ProductToBuyRepositoryImpl @Inject constructor(private val productToBuyApi
         try {
             return Product.getAllProductToBuy(productToBuyApi.getAllProducts())
         } catch (e: Exception) {
-            Product.Factory.countProduct = 3
+            Product.Factory.countProduct = 4
             return listOf<Product>(
                 Product.ProductToBuy(0, "Молоко", ProductCategory(0, "Жидкость", "литр"), 1, true),
                 Product.ProductToBuy(1, "Beer", ProductCategory(0, "Жидкость", "литр"), 2),
@@ -32,13 +32,9 @@ class ProductToBuyRepositoryImpl @Inject constructor(private val productToBuyApi
         }
     }
 
-    override suspend fun deleteAllCheckProduct(list: List<Int>) {
-        try {
-            productToBuyApi.deleteCheckProducts(list)
-        } catch (e: Exception) {
-
-        }
-    }
+    override suspend fun deleteAllCheckProduct(list: List<Int>) = try {
+        productToBuyApi.deleteCheckProducts(list)
+    } catch (_: Exception) { }
 
     override suspend fun createProduct(productToBuyCreate: ProductToBuyCreate) {
         try {
@@ -52,7 +48,7 @@ class ProductToBuyRepositoryImpl @Inject constructor(private val productToBuyApi
                 productToBuyCreate.isBuy
             )
             productToBuyApi.createProduct(mapProduct)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
 
         }
     }
@@ -62,7 +58,7 @@ class ProductToBuyRepositoryImpl @Inject constructor(private val productToBuyApi
             val mapProduct =
                 ProductToBuyUpdateRequestImpl(productToBuyUpdate.id, productToBuyUpdate.isBuy)
             productToBuyApi.updateProduct(mapProduct)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
 
         }
     }

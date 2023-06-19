@@ -28,7 +28,7 @@ class ProductRepositoryImpl @Inject constructor(private val productApi: ProductA
         return try {
             Product.getAllProductStorage(productApi.getAllProducts())
         } catch (e: Exception) {
-            Product.Factory.countProduct = 2
+            Product.Factory.countProduct = 3
             listOf<Product>(
                 Product.DefaultProduct(0, "Молоко", ProductCategory(0, "Жидкость", "литр"), 1),
                 Product.DefaultProduct(1, "Beer", ProductCategory(0, "Жидкость", "литр"), 2),
@@ -48,7 +48,7 @@ class ProductRepositoryImpl @Inject constructor(private val productApi: ProductA
                 productCreate.maxCount
             )
             productApi.createProduct(productRequest)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
 
         }
     }
